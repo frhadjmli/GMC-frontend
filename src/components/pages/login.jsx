@@ -1,58 +1,138 @@
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { FaUserAlt, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import styled from "styled-components";
 
-export default function Login() {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-  
-    function validateForm() {
-      return username.length > 0 && password.length > 0;
+export const Login = () => {
+  const [typePassword, setTypePassword] = useState("password");
+  const [username, setUsername] = useState();
+  const [password, setPasword] = useState();
+
+  const changeTypePassword = () => {
+    if (typePassword === "password") {
+      setTypePassword("text");
+    } else {
+      setTypePassword("password");
     }
-  
-    function handleSubmit(event) {
-      event.preventDefault();
-    }
-  
-    return (
-      <Section className="Login">
-        <Form onSubmit={handleSubmit}>
-          <Form.Group size="lg" controlId="username">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              autoFocus
+  };
+
+  return (
+    <Div>
+      <Container>
+        <Content>
+          <InputContent>
+            <FaUserAlt />
+            <Input
               type="text"
+              placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-          </Form.Group>
-          <Form.Group size="lg" controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
+          </InputContent>
+          <InputContent>
+            <FaLock />
+            <Input
+              type={typePassword}
+              placeholder="Password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPasword(e.target.value)}
             />
-          </Form.Group>
-          <Button block size="lg" type="submit" disabled={!validateForm()}>
-            Login
-          </Button>
-        </Form>
-      </Section>
-    );
-  }
 
-const Section = styled.div`
-    @media all and (min-width: 480px) {
-        .Login {
-        padding: 60px 0;
-        }
-  
-    .Login form {
+            {typePassword === "password" ? (
+              <FaEye onClick={changeTypePassword} />
+            ) : (
+              <FaEyeSlash onClick={changeTypePassword} />
+            )}
+          </InputContent>
 
-        margin: 0 auto;
-        max-width: 320px;
+          <ButtonLogin disabled={!username || !password}>Login</ButtonLogin>
+
+        </Content>
+      </Container>
+    </Div>
+  );
+};
+
+const Div = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #121214;
+`;
+
+const Container = styled.div`
+    width: 400px;
+    height: 280px;
+    background-color: #202024;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: 415px) {
+      width: 100%;
     }
-  }
+`;
+
+const Content = styled.div`
+    width: 80%;
+    height: 75%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const InputContent = styled.div`
+    background-color: #121214;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    border: 2px solid #121214;
+    padding: 0 5px;
+    margin-bottom: 10px;
+    svg {
+      color: #353434;
+      margin: 0 10px;
+      width: 20px;
+      height: 20px;
+    }
+    &:focus-within {
+      border-color: #697A21;
+      svg {
+        color: #697A21;
+      }
+    }
+`;
+
+const Input = styled.input`
+    outline: none;
+    background-color: #121214;
+    color: white;
+    border: none;
+    height: 50px;
+    width: 100%;
+    font-size: 15px;
+`;
+
+const ButtonLogin = styled.button`
+    width: 100%;
+    cursor: pointer;
+    background: #697A21;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size:16px;
+    height: 50px;
+    opacity: 0.9;
+    margin: 20px 0;
+    &:hover {
+      ${(props) =>
+        props.disabled === false
+          ? "transition: 0.2s ease; opacity: 1;"
+          : "cursor: not-allowed;"}
+    }
 `;
