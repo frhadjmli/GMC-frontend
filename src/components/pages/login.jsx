@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaUserAlt, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import styled from "styled-components";
 
 export const Login = () => {
+
+  let navigate = useNavigate();
+
   const [typePassword, setTypePassword] = useState("password");
   const [username, setUsername] = useState();
   const [password, setPasword] = useState();
@@ -44,7 +48,8 @@ export const Login = () => {
             )}
           </InputContent>
 
-          <ButtonLogin disabled={!username || !password}>Login</ButtonLogin>
+          <ButtonLogin disabled={!username || !password}
+           onClick={() => {navigate('/');}}>Login</ButtonLogin>
 
         </Content>
       </Container>

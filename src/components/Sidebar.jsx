@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { MdSpaceDashboard, MdMessage } from "react-icons/md";
-import { RiDashboard2Fill } from "react-icons/ri";
-import { FaAddressCard, FaTemperatureHigh, FaLeaf } from "react-icons/fa";
+import { FaTemperatureHigh, FaLeaf } from "react-icons/fa";
 import { AiOutlineControl } from "react-icons/ai";
 import { WiHumidity } from "react-icons/wi";
-import { GiTwirlCenter } from "react-icons/gi";
-import { BsFillChatTextFill, BsFillBrightnessHighFill } from "react-icons/bs";
-import { IoSettings } from "react-icons/io5";
+import { BsFillBrightnessHighFill } from "react-icons/bs";
 import { FiLogOut } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { VscChromeClose } from "react-icons/vsc";
 import scrollreveal from "scrollreveal";
 export default function Sidebar() {
+
+  let navigate = useNavigate();
+
   const [currentLink, setCurrentLink] = useState(1);
   const [navbarState, setNavbarState] = useState(false);
   const html = document.querySelector("html");
@@ -126,7 +127,7 @@ export default function Sidebar() {
         <div className="logout">
           <a href="#">
             <FiLogOut />
-            <span className="logout">Logout</span>
+            <span className="logout" onClick={()=>{navigate("/login");}}>Logout</span>
           </a>
         </div>
       </Section>
@@ -191,7 +192,7 @@ export default function Sidebar() {
             <li className="lgout">
               <a href="#">
                 <FiLogOut />
-                <span> Logout</span>
+                <span onClick={()=>{navigate('/login');}}> Logout</span>
               </a>
             </li>
           </ul>
