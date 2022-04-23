@@ -5,5 +5,6 @@ Hydroponic Greenhouse Monitoring and Controlling
 
 - [ ] fix login.jsx styles 
 - [ ] add more components to "./pages"
-- [ ] add 'Link' tag to logout button and other related elements
+- [ ] add 'Link' tag to related elements
+- [X] add redirection to login and logout elements
 
