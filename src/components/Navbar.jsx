@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
 export default function Navbar() {
+  let today = new Date().toLocaleDateString('fa-IR-u-nu-latn');
+  let todayTime = new Date().toLocaleTimeString();
   return (
     <Nav>
       <div className="title">
-        <h4>11:40, 1401-01-13</h4>
+        <h4>{today}, {todayTime}</h4>
         <h1>
           Welcome to <span>HGMC DASHBOARD</span>
         </h1>
