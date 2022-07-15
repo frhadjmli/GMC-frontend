@@ -19,6 +19,28 @@ export const Login = () => {
     }
   };
 
+  const login = event => {
+    console.log({username:username, password:password});
+    fetch("http://127.0.0.1:8000/auth/",{
+      method:'POST',
+      headers:{'Content-Type': 'application/json'},
+      body: JSON.stringify({username:username, password:password})
+    })
+    .then(data => data.json())
+    .then(
+      data => {
+        console.log(data.token);
+        if(data.token != undefined){
+          navigate('/');
+        }
+        else{
+          alert("username or password is not correct !");
+        }
+      }
+    ).catch(error => console.error(error))
+    
+  };
+
   return (
     <Div>
       <Container>
@@ -27,6 +49,7 @@ export const Login = () => {
             <FaUserAlt />
             <Input
               type="text"
+              name="username"
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -36,6 +59,7 @@ export const Login = () => {
             <FaLock />
             <Input
               type={typePassword}
+              name="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPasword(e.target.value)}
@@ -49,7 +73,9 @@ export const Login = () => {
           </InputContent>
 
           <ButtonLogin disabled={!username || !password}
-           onClick={() => {navigate('/');}}>Login</ButtonLogin>
+           onClick={() => {
+            login();
+            }} type="submit">Login</ButtonLogin>
 
         </Content>
       </Container>
