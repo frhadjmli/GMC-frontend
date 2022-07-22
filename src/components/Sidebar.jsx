@@ -82,7 +82,7 @@ export default function Sidebar() {
               >
                 <a href="#">
                   <FaTemperatureHigh />
-                  <span> Temperature</span>
+                  <span onClick={()=>{navigate("/temperature");}}> Temperature</span>
                 </a>
               </li>
               <li
@@ -149,7 +149,7 @@ export default function Sidebar() {
             >
               <a href="#">
                 <FaTemperatureHigh />
-                <span> Temperature</span>
+                <span onClick={()=>{navigate("/temperature");}}> Temperature</span>
               </a>
             </li>
             <li
