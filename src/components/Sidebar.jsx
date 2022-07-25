@@ -71,16 +71,16 @@ export default function Sidebar() {
                 className={currentLink === 1 ? "active" : "none"}
                 onClick={() => setCurrentLink(1)}
               >
-                <a href="#">
+                <a href="">
                   <MdSpaceDashboard />
-                  <span> Dashboard</span>
+                  <span onClick={()=>{navigate("/");}}> Dashboard</span>
                 </a>
               </li>
               <li
                 className={currentLink === 2 ? "active" : "none"}
                 onClick={() => setCurrentLink(2)}
               >
-                <a href="#">
+                <a href="">
                   <FaTemperatureHigh />
                   <span onClick={()=>{navigate("/temperature");}}> Temperature</span>
                 </a>
@@ -89,18 +89,18 @@ export default function Sidebar() {
                 className={currentLink === 3 ? "active" : "none"}
                 onClick={() => setCurrentLink(3)}
               >
-                <a href="#">
+                <a href="">
                   <WiHumidity />
-                  <span> Humidity</span>
+                  <span onClick={()=>{navigate("/humidity");}}> Humidity</span>
                 </a>
               </li>
               <li
                 className={currentLink === 4 ? "active" : "none"}
                 onClick={() => setCurrentLink(4)}
               >
-                <a href="#">
+                <a href="">
                   <BsFillBrightnessHighFill />
-                  <span> Lux</span>
+                  <span onClick={()=>{navigate("/lux");}}> Lux</span>
                 </a>
               </li>
               <li
@@ -138,16 +138,16 @@ export default function Sidebar() {
               className={currentLink === 1 ? "active" : "none"}
               onClick={() => setCurrentLink(1)}
             >
-              <a href="#">
+              <a href="">
                 <MdSpaceDashboard />
-                <span> Dashboard</span>
+                <span onClick={()=>{navigate("/");}}> Dashboard</span>
               </a>
             </li>
             <li
               className={currentLink === 2 ? "active" : "none"}
               onClick={() => setCurrentLink(2)}
             >
-              <a href="#">
+              <a href="">
                 <FaTemperatureHigh />
                 <span onClick={()=>{navigate("/temperature");}}> Temperature</span>
               </a>
@@ -156,18 +156,18 @@ export default function Sidebar() {
               className={currentLink === 3 ? "active" : "none"}
               onClick={() => setCurrentLink(3)}
             >
-              <a href="#">
+              <a href="">
                 <WiHumidity />
-                <span> Humidity</span>
+                <span onClick={()=>{navigate("/humidity");}}> Humidity</span>
               </a>
             </li>
             <li
               className={currentLink === 4 ? "active" : "none"}
               onClick={() => setCurrentLink(4)}
             >
-              <a href="#">
+              <a href="">
                 <BsFillBrightnessHighFill />
-                <span> Lux</span>
+                <span onClick={()=>{navigate("/lux");}}> Lux</span>
               </a>
             </li>
             <li
@@ -190,7 +190,7 @@ export default function Sidebar() {
             </li>
             <hr />
             <li className="lgout">
-              <a href="#">
+              <a href="s">
                 <FiLogOut />
                 <span onClick={()=>{navigate('/login');}}> Logout</span>
               </a>
