@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Analytics from "./Analytics";
-import Earnings from "./Earnings";
-import FAQ from "./FAQ";
+import TempDash from "./TempDash";
+import HumdDash from "./HumdDash";
 import Navbar from "./Navbar";
 import Profile from "./Profile";
 import Transfers from "./Transfers";
@@ -33,10 +33,10 @@ export default function Dashboard() {
       <div className="grid">
         <div className="row__one">
           <Analytics />
-          <FAQ />
+          <HumdDash />
         </div>
         <div className="row__two">
-          <Earnings />
+          <TempDash />
           <Transfers />
           <Profile />
         </div>
