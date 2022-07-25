@@ -40,6 +40,7 @@ const CustomDataTable = ({url,columns,search_column_field,title_table}) => {
             <div className="flex-item-right"><DataTable title={title_table}
                                                         columns={columns}
                                                         data={filteredItems}
+                                                        theme={"dark"}
                                                         pagination
                                                         highlightOnHover 
                                                         fixedHeader
