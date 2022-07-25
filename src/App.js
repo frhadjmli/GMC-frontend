@@ -14,7 +14,7 @@ export default function App() {
         <Route path="/login" element={<Login />}/>
         <Route path="/temperature" element={<Temperature />}/>
         <Route path="/humidity" element={<Humidity />}/>
-        <Route path="/LuxSensor" element={<Lux />}/>
+        <Route path="/lux" element={<Lux />}/>
         <Route path="/" element={<Home />}/>
       </Routes>
     </Router>
