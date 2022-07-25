@@ -125,7 +125,7 @@ export default function Sidebar() {
           </div>
         </div>
         <div className="logout">
-          <a href="#">
+          <a href="">
             <FiLogOut />
             <span className="logout" onClick={()=>{navigate("/login");}}>Logout</span>
           </a>
@@ -190,7 +190,7 @@ export default function Sidebar() {
             </li>
             <hr />
             <li className="lgout">
-              <a href="s">
+              <a href="">
                 <FiLogOut />
                 <span onClick={()=>{navigate('/login');}}> Logout</span>
               </a>
