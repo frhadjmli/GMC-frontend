@@ -5,7 +5,7 @@ import TempDash from "./TempDash";
 import HumdDash from "./HumdDash";
 import Navbar from "./Navbar";
 import Profile from "./Profile";
-import Transfers from "./Transfers";
+import SensorSummary from "./SensorSummary";
 import scrollreveal from "scrollreveal";
 export default function Dashboard() {
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function Dashboard() {
         </div>
         <div className="row__two">
           <TempDash />
-          <Transfers />
+          <SensorSummary />
           <Profile />
         </div>
       </div>
