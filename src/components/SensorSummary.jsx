@@ -1,34 +1,87 @@
 import React from "react";
+import { useState, useEffect} from "react";
 import styled from "styled-components";
-import { HiArrowNarrowRight } from "react-icons/hi";
 import avatarImage from "../assets/temperature.png";
+import humdIcon from "../assets/humidity.png";
+import sunIcon from "../assets/sun.png";
 import { cardStyles } from "./ReusableStyles";
 
-export default function Transfers() {
+export default function SensorSummary() {
+
+  const [temperature, setTemperature] = useState([]);
+  const [humidity, setHumidity] = useState([]);
+  const [lux, setLux] = useState([]);
+
+  const fetchTempData = async () => {
+    try {
+      const url = "http://127.0.0.1:8000/tempSensor/";
+      const response = await fetch(url);
+      const datapoints = await response.json();
+      setTemperature(datapoints);
+      console.log(temperature);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchHumdData = async () => {
+    try {
+      const url = "http://127.0.0.1:8000/HumdSensor/";
+      const response = await fetch(url);
+      const datapoints = await response.json();
+      setHumidity(datapoints);
+      console.log(humidity);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchLuxData = async () => {
+    try {
+      const url = "http://127.0.0.1:8000/LuxSensor/";
+      const response = await fetch(url);
+      const datapoints = await response.json();
+      setLux(datapoints);
+      console.log(lux);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() =>{
+    fetchTempData();
+    fetchHumdData();
+    fetchLuxData();
+}, []);
+
   const transactions = [
     {
       image: avatarImage,
-      name: "Temp Sensor #1",
-      time: "Today, 16:36",
-      amount: "50c",
+      name: "Temp Sensor",
+      time: `Today, ${temperature.slice(-1).map(x => x.recorded_time)}`,
+      amount: temperature.slice(-1).map(x => x.temp_value)
+      .toString()+String.fromCodePoint(8451),
     },
     {
-      image: avatarImage,
-      name: "Temp Sensor #2",
-      time: "Today, 12:15",
-      amount: "25c",
+      image: humdIcon,
+      name: "Humd Sensor",
+      time: `Today, ${humidity.slice(-1).map(x => x.recorded_time)}`,
+      amount: humidity.slice(-1).map(x => x.humd_value).toString()+' %'
     },
     {
-      image: avatarImage,
-      name: "Temp Sensor #3",
-      time: "Today, 18:43",
-      amount: "12c",
+      image: sunIcon,
+      name: "Lux Sensor",
+      time: `Today, ${lux.slice(-1).map(x => x.recorded_time)}`,
+      amount: lux.slice(-1).map(x => x.lux_value).toString()+' lx',
     },
   ];
   return (
     <Section>
       <div className="title">
-        <h2>Transfers</h2>
+        <h2>Sensors</h2>
       </div>
       <div className="transactions">
         {transactions.map((transaction) => {
@@ -50,9 +103,6 @@ export default function Transfers() {
           );
         })}
       </div>
-      <a className="view" href="#">
-        View all <HiArrowNarrowRight />
-      </a>
     </Section>
   );
 }
@@ -92,7 +142,7 @@ const Section = styled.section`
       &__amount {
         background-color: #cede87;
         padding: 0.2rem 0.5rem;
-        width: 4rem;
+        width: 5rem;
         border-radius: 1rem;
         text-align: center;
         transition: 0.3s ease-in-out;
