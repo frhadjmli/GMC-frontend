@@ -2,10 +2,39 @@ import React, { useState } from "react";
 import axios from 'axios'
 import styled from "styled-components";
 import Sidebar from "../components/Sidebar";
-import DataTable from "react-data-table-component";
+import DataTable, {createTheme} from "react-data-table-component";
 import { useEffect } from "react";
 
 const CustomDataTable = ({url,columns,search_column_field,title_table}) => {
+
+  
+  createTheme('new_dark',{
+    text: {
+      primary: '#f0f5f5',
+      secondary: '#697a21',
+    },
+    background: {
+      default: '#181717',
+    },
+    context: {
+      background: '#cb4b16',
+      text: '#FFFFFF',
+    },
+    divider: {
+      default: 'rgba(224, 235, 235, .3)',
+    },
+    button: {
+      default: '#697a21',
+      hover: 'rgba(0,0,0,.08)',
+      focus: '#181717',
+      disabled: 'rgba(255, 255, 255, .34)',
+    },
+    sortFocus: {
+      default: '#2aa198',
+    },
+  },
+  'dark',
+);
 
     const [search, setSearch] =useState("");
     const [items, setItems] =useState([]);
@@ -37,38 +66,34 @@ const CustomDataTable = ({url,columns,search_column_field,title_table}) => {
     return (
         <Div clasNames="flex-container">
             <div className="flex-item-left"><Sidebar /></div>
-            <div className="flex-item-right"><DataTable title={title_table}
-                                                        columns={columns}
-                                                        data={filteredItems}
-                                                        theme={"dark"}
-                                                        pagination
-                                                        highlightOnHover 
-                                                        fixedHeader
-                                                        fixedHeaderScrollHeight="550px" 
-                                                        subHeader
-                                                        subHeaderAlign="left"
-                                                        subHeaderComponent={
-                                                            <input type="text" placeholder="Search here" value={search}
-                                                             onChange={(e) => setSearch(e.target.value)}
-                                                             style={{
-                                                                borderRadius:" 20px",
-                                                                outline: "none",
-                                                                backgroundColor: "#697A21",
-                                                                color: "white",
-                                                                border: "none",
-                                                                height: "50px",
-                                                                width: "30%",
-                                                                fontSize: "15px",
-                                                                textAlign: "center"
-                                                             }}/>
-                                                        }
-                                                      />
+            <div className="flex-item-right">
+              <DataTable title={title_table}
+                columns={columns}
+                data={filteredItems}
+                theme={"new_dark"}
+                pagination
+                highlightOnHover 
+                fixedHeader
+                fixedHeaderScrollHeight="550px" 
+                subHeader
+                subHeaderAlign="left"
+                subHeaderComponent={
+                  <input type="text" placeholder="Search here" value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    style={{
+                      borderRadius:" 20px",
+                      outline: "none",
+                      backgroundColor: "#212121",
+                      color: "white",
+                      border: "none",
+                      height: "30px",
+                      width: "30%",
+                      fontSize: "13px",
+                      textAlign: "center" }}/>}
+                />
             </div> 
         </Div>
-
-      ); 
-
-
+  );
 }
 
 export default CustomDataTable;
@@ -92,4 +117,4 @@ const Div = styled.div`
       flex-direction: column;
     }
 
-`;
+  }`;
