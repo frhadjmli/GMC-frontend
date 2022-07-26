@@ -1,5 +1,7 @@
 import { createContext, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AuthContext = createContext()
 
@@ -27,7 +29,7 @@ export const AuthProvider = ({children}) => {
            localStorage.setItem('authTokens', JSON.stringify(data))
            navigate('/')
        }else{
-           alert("username or password is not correct !")
+           toast.error("Wrong Username Or Password!!!")
        }
     }
 
@@ -45,9 +47,14 @@ export const AuthProvider = ({children}) => {
     }
 
     return(
-        <AuthContext.Provider value={contextData}>
-            {children}
-        </AuthContext.Provider>
+        <div>
+            <AuthContext.Provider value={contextData}>
+                {children}
+            </AuthContext.Provider>
+            <ToastContainer 
+             position="bottom-center"
+              />
+        </div>
 
     )
 }
