@@ -4,11 +4,7 @@ import image from "../assets/greenhouse-profile.jpeg";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { cardStyles } from "./ReusableStyles";
 export default function Profile() {
-  let getApi = async () => {
-    let response = await fetch("http://127.0.0.1:8000/api/")
-    let data = await response.json()
-    return data
-  }
+  
   return (
     <Section>
       <div className="image">
@@ -22,12 +18,12 @@ export default function Profile() {
       </div>
       <div className="info">
         <div className="container">
-          <h5>Total Number of Sensors</h5>
-          <h3>28</h3>
+          <h5>Sensors</h5>
+          <h3>2</h3>
         </div>
         <div className="container">
-          <h5>Active Switches</h5>
-          <h3>4</h3>
+          <h5>Switches</h5>
+          <h3>2</h3>
         </div>
         <div className="container">
           <h5>Alarms</h5>

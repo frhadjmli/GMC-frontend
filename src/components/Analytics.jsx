@@ -1,29 +1,72 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { BsFillCalendar2WeekFill } from "react-icons/bs";
-import { IoStatsChart } from "react-icons/io5";
+import { FaWater } from "react-icons/fa";
+import { GiComputerFan } from "react-icons/gi";
 import { BiGroup } from "react-icons/bi";
 import { FiActivity } from "react-icons/fi";
 import { cardStyles } from "./ReusableStyles";
+
+
 export default function Analytics() {
+
+  const [fan, setFan] = useState([]);
+  const [pump, setPump] = useState([]);
+
+  const fetchFanData = async () => {
+    try {
+      const url = "http://127.0.0.1:8000/Ventilation/";
+      const response = await fetch(url);
+      const datapoints = await response.json();
+      setFan(datapoints);
+      console.log(fan);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchPumpData = async () => {
+    try {
+      const url = "http://127.0.0.1:8000/Irrigation/";
+      const response = await fetch(url);
+      const datapoints = await response.json();
+      setPump(datapoints);
+      console.log(pump);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() =>{
+    fetchFanData();
+    fetchPumpData();
+}, []);
+
+  const fan_status = fan.slice(-1).map(x => x.fan_status);
+  const fan_id = fan.slice(-1).map(x => x.fan_id);
+  const pump_status = pump.slice(-1).map(x => x.pump_status);
+  const pump_id = pump.slice(-1).map(x => x.pump_id);
+
+
   return (
     <Section>
       <div className="analytic ">
         <div className="content">
-          <h5>Spent this month</h5>
-          <h2>$682.5</h2>
+          <h4>{pump_id}</h4>
+          <h5>{pump_status ? 'ON':'OFF'}</h5>
         </div>
         <div className="logo">
-          <BsFillCalendar2WeekFill />
+          <FaWater />
         </div>
       </div>
       <div className="analytic">
         <div className="logo">
-          <IoStatsChart />
+          <GiComputerFan />
         </div>
         <div className="content">
-          <h5>Earnings</h5>
-          <h2>$350.40</h2>
+          <h4>{fan_id}</h4>
+          <h5>{fan_status ? 'ON':'OFF'}</h5>
         </div>
       </div>
       <div className="analytic">
@@ -31,14 +74,14 @@ export default function Analytics() {
           <BiGroup />
         </div>
         <div className="content">
-          <h5>New clients</h5>
-          <h2>321</h2>
+          <h5>N/A</h5>
+          <h2>N/A</h2>
         </div>
       </div>
       <div className="analytic ">
         <div className="content">
-          <h5>Activity</h5>
-          <h2>$540.50</h2>
+          <h5>N/A</h5>
+          <h2>N/A</h2>
         </div>
         <div className="logo">
           <FiActivity />
