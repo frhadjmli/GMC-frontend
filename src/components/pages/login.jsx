@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { FaUserAlt, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import styled from "styled-components";
 import AuthContext from "../../context/AuthContext";
@@ -7,7 +7,7 @@ import AuthContext from "../../context/AuthContext";
 export const Login = () => {
 
   let {loginUser} = useContext(AuthContext)
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
 
   const [typePassword, setTypePassword] = useState("password");
   const [username, setUsername] = useState();
