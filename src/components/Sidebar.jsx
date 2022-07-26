@@ -73,7 +73,7 @@ export default function Sidebar() {
               >
                 <a href="">
                   <MdSpaceDashboard />
-                  <span onClick={()=>{navigate("/");}}> Dashboard</span>
+                  <span onClick={(e)=>{e.preventDefault();navigate("/");}}> Dashboard</span>
                 </a>
               </li>
               <li
@@ -82,7 +82,7 @@ export default function Sidebar() {
               >
                 <a href="">
                   <FaTemperatureHigh />
-                  <span onClick={()=>{navigate("/temperature");}}> Temperature</span>
+                  <span onClick={(e)=>{e.preventDefault();navigate("/temperature");}}> Temperature</span>
                 </a>
               </li>
               <li
@@ -91,7 +91,7 @@ export default function Sidebar() {
               >
                 <a href="">
                   <WiHumidity />
-                  <span onClick={()=>{navigate("/humidity");}}> Humidity</span>
+                  <span onClick={(e)=>{e.preventDefault();navigate("/humidity");}}> Humidity</span>
                 </a>
               </li>
               <li
@@ -100,7 +100,7 @@ export default function Sidebar() {
               >
                 <a href="">
                   <BsFillBrightnessHighFill />
-                  <span onClick={()=>{navigate("/lux");}}> Lux</span>
+                  <span onClick={(e)=>{e.preventDefault();navigate("/lux");}}> Lux</span>
                 </a>
               </li>
               <li
@@ -127,7 +127,7 @@ export default function Sidebar() {
         <div className="logout">
           <a href="">
             <FiLogOut />
-            <span className="logout" onClick={()=>{navigate("/login");}}>Logout</span>
+            <span className="logout" onClick={(e)=>{e.preventDefault();navigate("/login");}}>Logout</span>
           </a>
         </div>
       </Section>
@@ -140,7 +140,7 @@ export default function Sidebar() {
             >
               <a href="">
                 <MdSpaceDashboard />
-                <span onClick={()=>{navigate("/");}}> Dashboard</span>
+                <span onClick={(e)=>{e.preventDefault();navigate("/");}}> Dashboard</span>
               </a>
             </li>
             <li
@@ -149,7 +149,7 @@ export default function Sidebar() {
             >
               <a href="">
                 <FaTemperatureHigh />
-                <span onClick={()=>{navigate("/temperature");}}> Temperature</span>
+                <span onClick={(e)=>{e.preventDefault();navigate("/temperature");}}> Temperature</span>
               </a>
             </li>
             <li
@@ -158,7 +158,7 @@ export default function Sidebar() {
             >
               <a href="">
                 <WiHumidity />
-                <span onClick={()=>{navigate("/humidity");}}> Humidity</span>
+                <span onClick={(e)=>{e.preventDefault();navigate("/humidity");}}> Humidity</span>
               </a>
             </li>
             <li
@@ -167,7 +167,7 @@ export default function Sidebar() {
             >
               <a href="">
                 <BsFillBrightnessHighFill />
-                <span onClick={()=>{navigate("/lux");}}> Lux</span>
+                <span onClick={(e)=>{e.preventDefault();navigate("/lux");}}> Lux</span>
               </a>
             </li>
             <li
@@ -192,7 +192,7 @@ export default function Sidebar() {
             <li className="lgout">
               <a href="">
                 <FiLogOut />
-                <span onClick={()=>{navigate('/login');}}> Logout</span>
+                <span onClick={(e)=>{e.preventDefault();navigate('/login');}}> Logout</span>
               </a>
             </li>
           </ul>
