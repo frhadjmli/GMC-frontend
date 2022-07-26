@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUserAlt, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import styled from "styled-components";
+import AuthContext from "../../context/AuthContext";
 
 export const Login = () => {
 
+  let {loginUser} = useContext(AuthContext)
   let navigate = useNavigate();
 
   const [typePassword, setTypePassword] = useState("password");
@@ -19,32 +21,33 @@ export const Login = () => {
     }
   };
 
-  const login = event => {
-    console.log({username:username, password:password});
-    fetch("http://127.0.0.1:8000/auth/",{
-      method:'POST',
-      headers:{'Content-Type': 'application/json'},
-      body: JSON.stringify({username:username, password:password})
-    })
-    .then(data => data.json())
-    .then(
-      data => {
-        console.log(data.token);
-        if(data.token != undefined){
-          navigate('/');
-        }
-        else{
-          alert("username or password is not correct !");
-        }
-      }
-    ).catch(error => console.error(error))
+  // const login = event => {
+  //   console.log({username:username, password:password});
+  //   fetch("http://127.0.0.1:8000/auth/",{
+  //     method:'POST',
+  //     headers:{'Content-Type': 'application/json'},
+  //     body: JSON.stringify({username:username, password:password})
+  //   })
+  //   .then(data => data.json())
+  //   .then(
+  //     data => {
+  //       console.log(data.token);
+  //       if(data.token != undefined){
+  //         navigate('/');
+  //       }
+  //       else{
+  //         alert("username or password is not correct !");
+  //       }
+  //     }
+  //   ).catch(error => console.error(error))
     
-  };
+  // };
 
   return (
     <Div>
       <Container>
         <Content>
+          <form onSubmit={loginUser}>
           <InputContent>
             <FaUserAlt />
             <Input
@@ -73,10 +76,11 @@ export const Login = () => {
           </InputContent>
 
           <ButtonLogin disabled={!username || !password}
-           onClick={() => {
-            login();
-            }} type="submit">Login</ButtonLogin>
-
+          //  onClick={() => {
+          //   login();
+          //   }}
+             type="submit">Login</ButtonLogin>
+          </form>
         </Content>
       </Container>
     </Div>
