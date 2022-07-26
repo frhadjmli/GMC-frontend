@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { MdSpaceDashboard, MdMessage } from "react-icons/md";
@@ -10,9 +10,12 @@ import { FiLogOut } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { VscChromeClose } from "react-icons/vsc";
 import scrollreveal from "scrollreveal";
+import AuthContext from '../context/AuthContext';
+
 export default function Sidebar() {
 
   let navigate = useNavigate();
+  let {logoutUser} = useContext(AuthContext)
 
   const [currentLink, setCurrentLink] = useState(1);
   const [navbarState, setNavbarState] = useState(false);
@@ -127,7 +130,7 @@ export default function Sidebar() {
         <div className="logout">
           <a href="">
             <FiLogOut />
-            <span className="logout" onClick={(e)=>{e.preventDefault();navigate("/login");}}>Logout</span>
+            <span className="logout" onClick={logoutUser}>Logout</span>
           </a>
         </div>
       </Section>
@@ -192,7 +195,7 @@ export default function Sidebar() {
             <li className="lgout">
               <a href="">
                 <FiLogOut />
-                <span onClick={(e)=>{e.preventDefault();navigate('/login');}}> Logout</span>
+                <span onClick={logoutUser}> Logout</span>
               </a>
             </li>
           </ul>
