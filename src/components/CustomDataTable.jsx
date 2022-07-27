@@ -3,6 +3,7 @@ import axios from 'axios'
 import styled from "styled-components";
 import Sidebar from "../components/Sidebar";
 import DataTable, {createTheme} from "react-data-table-component";
+import { FcRefresh } from "react-icons/fc";
 import { useEffect } from "react";
 
 const CustomDataTable = ({url,columns,search_column_field,title_table}) => {
@@ -71,12 +72,14 @@ const CustomDataTable = ({url,columns,search_column_field,title_table}) => {
                 columns={columns}
                 data={filteredItems}
                 theme={"new_dark"}
+                dense
                 pagination
                 highlightOnHover 
                 fixedHeader
                 fixedHeaderScrollHeight="550px" 
                 subHeader
                 subHeaderAlign="left"
+                actions={<RefreshBtn onClick={()=>getItems()}>Refresh Data</RefreshBtn>}
                 subHeaderComponent={
                   <input type="text" placeholder="Search here" value={search}
                     onChange={(e) => setSearch(e.target.value)}
@@ -118,3 +121,30 @@ const Div = styled.div`
     }
 
   }`;
+
+const RefreshBtn = styled.button`
+
+  background-color: #676666;
+  border: none;
+  border-radius: 5px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+  margin: 0;
+  outline: 0;
+  padding: 6px 14px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  transition-duration: 0.4s;
+
+
+&:hover {
+  background-color: #697a21;
+  text-decoration: none;
+  color: black;
+  
+}
+
+`;
