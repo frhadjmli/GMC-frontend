@@ -5,161 +5,6 @@ CategoryScale, LinearScale, Title, Tooltip} from "chart.js";
 import { Line } from "react-chartjs-2";
 import { cardStyles } from "./ReusableStyles";
 import { useState, useEffect } from "react";
-// const data = [
-//   { data: 4500 },
-//   {
-//     data: 5000,
-//   },
-//   {
-//     data: 4700,
-//   },
-//   {
-//     data: 4400,
-//   },
-//   {
-//     data: 4800,
-//   },
-//   {
-//     data: 5300,
-//   },
-//   {
-//     data: 5800,
-//   },
-//   {
-//     data: 6000,
-//   },
-//   {
-//     data: 6300,
-//   },
-//   {
-//     data: 6580,
-//   },
-//   {
-//     data: 6780,
-//   },
-//   {
-//     data: 6680,
-//   },
-//   {
-//     data: 6500,
-//   },
-//   {
-//     data: 6300,
-//   },
-//   {
-//     data: 5900,
-//   },
-//   {
-//     data: 5700,
-//   },
-//   {
-//     data: 5500,
-//   },
-//   {
-//     data: 5300,
-//   },
-//   {
-//     data: 5100,
-//   },
-//   {
-//     data: 5090,
-//   },
-//   {
-//     data: 5300,
-//   },
-//   {
-//     data: 5800,
-//   },
-//   {
-//     data: 6000,
-//   },
-//   {
-//     data: 6300,
-//   },
-//   {
-//     data: 6780,
-//   },
-//   {
-//     data: 6500,
-//   },
-//   {
-//     data: 6300,
-//   },
-//   {
-//     data: 6500,
-//   },
-//   {
-//     data: 6700,
-//   },
-//   {
-//     data: 7000,
-//   },
-//   {
-//     data: 7300,
-//   },
-//   {
-//     data: 7500,
-//   },
-//   {
-//     data: 7700,
-//   },
-//   {
-//     data: 8090,
-//   },
-//   {
-//     data: 8190,
-//   },
-//   {
-//     data: 7990,
-//   },
-
-//   {
-//     data: 7700,
-//   },
-//   {
-//     data: 7500,
-//   },
-//   {
-//     data: 7300,
-//   },
-//   {
-//     data: 7000,
-//   },
-//   {
-//     data: 6700,
-//   },
-//   {
-//     data: 6500,
-//   },
-//   {
-//     data: 6300,
-//   },
-//   {
-//     data: 6500,
-//   },
-//   {
-//     data: 6780,
-//   },
-//   {
-//     data: 6300,
-//   },
-//   {
-//     data: 6000,
-//   },
-//   {
-//     data: 5800,
-//   },
-
-//   {
-//     data: 5490,
-//   },
-//   {
-//     data: 6000,
-//   },
-//   {
-//     data: 8000,
-//   },
-// ];
 
 ChartJS.register(
   CategoryScale,
@@ -173,17 +18,33 @@ ChartJS.register(
 export default function TempDash() {
 
   const [temperature, setTemperature] = useState([]);
-
+  
   async function fetchTempData(){
     const url = "http://127.0.0.1:8000/tempSensor/";
     const response = await fetch(url);
     const datapoints = await response.json();
     setTemperature(datapoints);
-     console.log(temperature);
+    console.log(temperature);
+  };
+
+  const connectToStream = () => {
+    try {
+
+      const stream = new EventSource("http://127.0.0.1:8000/events/");
+      stream.addEventListener('temp_update', (event) => {
+
+        const eventData = JSON.parse(event.data);
+        setTemperature(temperature => [...temperature, eventData]); 
+      });
+      
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() =>{
     fetchTempData();
+    connectToStream();
 }, []);
 
   const data = {
