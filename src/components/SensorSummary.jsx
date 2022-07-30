@@ -12,39 +12,27 @@ export default function SensorSummary() {
   const [humidity, setHumidity] = useState([]);
   const [lux, setLux] = useState([]);
 
-  const fetchTempData = async () => {
+  const connectToStream = () => {
     try {
-      const url = "http://127.0.0.1:8000/tempSensor/";
-      const response = await fetch(url);
-      const datapoints = await response.json();
-      setTemperature(datapoints);
-      console.log(temperature);
-      
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
-  const fetchHumdData = async () => {
-    try {
-      const url = "http://127.0.0.1:8000/HumdSensor/";
-      const response = await fetch(url);
-      const datapoints = await response.json();
-      setHumidity(datapoints);
-      console.log(humidity);
-      
-    } catch (error) {
-      console.log(error);
-    }
-  };
+      const stream = new EventSource("http://127.0.0.1:8000/events/");
+      stream.addEventListener('temp_update', (event) => {
 
-  const fetchLuxData = async () => {
-    try {
-      const url = "http://127.0.0.1:8000/LuxSensor/";
-      const response = await fetch(url);
-      const datapoints = await response.json();
-      setLux(datapoints);
-      console.log(lux);
+        const eventData = JSON.parse(event.data);
+        setTemperature(temperature => [...temperature, eventData]); 
+      });
+
+      stream.addEventListener('humd_update', (event) => {
+
+        const eventData = JSON.parse(event.data);
+        setHumidity(humidity => [...humidity, eventData]); 
+      });
+
+      stream.addEventListener('lux_update', (event) => {
+
+        const eventData = JSON.parse(event.data);
+        setLux(lux => [...lux, eventData]); 
+      });
       
     } catch (error) {
       console.log(error);
@@ -52,9 +40,7 @@ export default function SensorSummary() {
   };
 
   useEffect(() =>{
-    fetchTempData();
-    fetchHumdData();
-    fetchLuxData();
+    connectToStream();
 }, []);
 
   const transactions = [
