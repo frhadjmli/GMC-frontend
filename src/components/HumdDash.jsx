@@ -31,8 +31,24 @@ export default function HumdDash() {
     }
   };
 
+  const connectToStream = () => {
+    try {
+
+      const stream = new EventSource("http://127.0.0.1:8000/events/");
+      stream.addEventListener('humd_update', (event) => {
+
+        const eventData = JSON.parse(event.data);
+        setHumidity(humidity => [...humidity, eventData]); 
+      });
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() =>{
     fetchHumdData();
+    connectToStream();
 }, []);
 
 const data = {
