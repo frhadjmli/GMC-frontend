@@ -6,12 +6,14 @@ import { GiComputerFan } from "react-icons/gi";
 import { BiGroup } from "react-icons/bi";
 import { FiActivity } from "react-icons/fi";
 import { cardStyles } from "./ReusableStyles";
-
+import ReactSwitch from "react-switch";
 
 export default function Analytics() {
 
   const [fan, setFan] = useState([]);
   const [pump, setPump] = useState([]);
+  const [switch_fan , setSwitch_fan] = useState('false')
+  const [switch_pump , setSwitch_pump] = useState(false)
 
   const fetchFanData = async () => {
     try {
@@ -38,10 +40,34 @@ export default function Analytics() {
     }
   };
 
+  let update_fan_status = async () => {
+    const response = await fetch("http://127.0.0.1:8000/Ventilation/update/1/",{
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body:{}
+    })
+    const data = await response.json();
+    console.log("data.fan_status",data.fan_status)
+    setSwitch_fan(String(data.fan_status))
+}
+
+  const toggleSwitch = () => {
+    setSwitch_fan((curr) => (curr === 'true' ? 'false' : 'true'))
+    update_fan_status()
+  }
+
   useEffect(() =>{
     fetchFanData();
     fetchPumpData();
+    console.log("2")
 }, []);
+
+useEffect(() =>{
+  fetchFanData();
+  console.log("1")
+}, [switch_fan]);
 
   const fan_status = fan.slice(-1).map(x => x.fan_status);
   const fan_id = fan.slice(-1).map(x => x.fan_id);
@@ -51,24 +77,31 @@ export default function Analytics() {
 
   return (
     <Section>
-      <div className="analytic ">
-        <div className="content">
-          <h4>{pump_id}</h4>
-          <h5>{pump_status ? 'ON':'OFF'}</h5>
+      
+        <div className="analytic ">
+          <div className="content">
+            <h4>{pump_id}</h4>
+            <h5>{pump_status ? 'ON':'OFF'}</h5>
+            <ReactSwitch />
+          </div>
+          <div className="logo">
+            <FaWater />
+          </div>
         </div>
-        <div className="logo">
-          <FaWater />
+      
+      {fan.filter(y => y.id===1).map(x =>
+        <div className="analytic">
+          <div className="logo">
+            <GiComputerFan />
+          </div>
+          <div className="content">
+            <h4>{x.fan_id}</h4>
+            <h5>{String(x.fan_status) }</h5>
+            <ReactSwitch onChange={toggleSwitch} checked={switch_fan !== 'false'}/>
+          </div>
         </div>
-      </div>
-      <div className="analytic">
-        <div className="logo">
-          <GiComputerFan />
-        </div>
-        <div className="content">
-          <h4>{fan_id}</h4>
-          <h5>{fan_status ? 'ON':'OFF'}</h5>
-        </div>
-      </div>
+      )}
+
       <div className="analytic">
         <div className="logo">
           <BiGroup />
@@ -87,6 +120,7 @@ export default function Analytics() {
           <FiActivity />
         </div>
       </div>
+      
     </Section>
     
   );
@@ -108,6 +142,14 @@ const Section = styled.section`
       color: black;
       svg {
         color: white;
+      }
+    }
+    .content{
+      h4 {
+        margin-bottom: 20px;
+      }
+      h5 {
+        margin-bottom: 20px;
       }
     }
     .logo {
