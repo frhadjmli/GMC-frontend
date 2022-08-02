@@ -12,7 +12,7 @@ export default function Analytics() {
 
   const [fan, setFan] = useState([]);
   const [pump, setPump] = useState([]);
-  const [switch_fan , setSwitch_fan] = useState('false');
+  const [switch_fan , setSwitch_fan] = useState(false);
   const [switch_pump , setSwitch_pump] = useState(false);
 
   const fetchFanData = async () => {
@@ -51,7 +51,7 @@ export default function Analytics() {
     const data = await response.json();
     console.log("data.fan_status", data.fan_status);
     setSwitch_fan(data.fan_status);
-}
+  }
   let update_pump_status = async () => {
     const response = await fetch("http://127.0.0.1:8000/Irrigation/update/1/",{
         method: "PUT",
@@ -63,7 +63,7 @@ export default function Analytics() {
     const data = await response.json();
     console.log("data.pump_status", data.pump_status);
     setSwitch_pump(data.pump_status);
-}
+  }
 
   const toggleFanSwitch = () => {
     setSwitch_fan((curr) => (curr === true ? false : true));
@@ -77,12 +77,12 @@ export default function Analytics() {
   useEffect(() =>{
     fetchFanData();
     fetchPumpData();
-}, []);
+  }, []);
 
-  const fan_status = fan.slice(-1).map(x => x.fan_status);
-  const fan_id = fan.slice(-1).map(x => x.fan_id);
-  const pump_status = pump.slice(-1).map(x => x.pump_status);
-  const pump_id = pump.slice(-1).map(x => x.pump_id);
+  const fan_status = fan.filter(y => y.id === 1).map(x => x.fan_status);
+  const fan_id = fan.filter(y => y.id === 1).map(x => x.fan_id);
+  const pump_status = pump.filter(y => y.id === 1).map(x => x.pump_status);
+  const pump_id = pump.filter(y => y.id === 1).map(x => x.pump_id);
 
   return (
     <Section>
