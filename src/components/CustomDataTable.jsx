@@ -65,36 +65,36 @@ const CustomDataTable = ({url,columns,search_column_field,title_table}) => {
     }, [search]);
 
     return (
-        <Div clasNames="flex-container">
-            <div className="flex-item-left"><Sidebar /></div>
-            <div className="flex-item-right">
-              <DataTable title={title_table}
-                columns={columns}
-                data={filteredItems}
-                theme={"new_dark"}
-                dense
-                pagination
-                highlightOnHover 
-                fixedHeader
-                fixedHeaderScrollHeight="550px" 
-                subHeader
-                subHeaderAlign="left"
-                actions={<RefreshBtn onClick={()=>getItems()}>Refresh Data</RefreshBtn>}
-                subHeaderComponent={
-                  <input type="text" placeholder="Search here" value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    style={{
-                      borderRadius:" 20px",
-                      outline: "none",
-                      backgroundColor: "#212121",
-                      color: "white",
-                      border: "none",
-                      height: "30px",
-                      width: "30%",
-                      fontSize: "13px",
-                      textAlign: "center" }}/>}
-                />
-            </div> 
+        <Div>
+          <Sidebar />
+          <Section>
+            <DataTable title={title_table}
+              columns={columns}
+              data={filteredItems}
+              theme={"new_dark"}
+              dense
+              pagination
+              highlightOnHover 
+              fixedHeader
+              fixedHeaderScrollHeight="550px" 
+              subHeader
+              subHeaderAlign="left"
+              actions={<RefreshBtn onClick={()=>getItems()}>Refresh Data</RefreshBtn>}
+              subHeaderComponent={
+                <input type="text" placeholder="Search here" value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  style={{
+                    borderRadius:" 20px",
+                    outline: "none",
+                    backgroundColor: "#212121",
+                    color: "white",
+                    border: "none",
+                    height: "30px",
+                    width: "30%",
+                    fontSize: "13px",
+                    textAlign: "center" }}/>}
+              />     
+          </Section>  
         </Div>
   );
 }
@@ -102,25 +102,21 @@ const CustomDataTable = ({url,columns,search_column_field,title_table}) => {
 export default CustomDataTable;
 
 const Div = styled.div`
-  
-  display: flex;
-  flex-direction: row;
-  
-  .flex-item-left {
-    flex: 20%;
-  }
-  
-  .flex-item-right {
-    flex: 80%;
-  }
+  position: relative;
+`;
 
-  @media (max-width: 800px) {
-    .flex-item-left, .flex-item-right  {
-      flex: 100%;
-      flex-direction: column;
+const Section = styled.section`
+  margin-left: 18vw;
+  padding: 2rem;
+  height: 100%;
+  @media screen and (min-width: 260px) and (max-width: 1080px) {
+    position: initial;
+    width: 100%;
+    height: max-content;
+    padding: 1rem;
+    margin-left: 0vw;
     }
-
-  }`;
+  `;
 
 const RefreshBtn = styled.button`
 
