@@ -52,7 +52,7 @@ export default function TempDash() {
     datasets:[
       {
         label: "Temperature Data",
-        data: temperature.slice(-6).map(x => x.temp_value),
+        data: temperature.slice(-6).map(x => x.value),
         fill: true,
         borderColor: "#697A21"
       }
@@ -69,8 +69,8 @@ export default function TempDash() {
     }
   };
 
-  let meanTemp = temperature.reduce((r, c) => r + c.temp_value, 0) / temperature.length;
-  meanTemp = (meanTemp.toFixed(1)).toString();
+  let meanTemp = temperature.reduce((total, next) => parseInt(total) + parseInt(next.value), 0) / temperature.length;
+  meanTemp = String(meanTemp.toFixed(1));
 
   return (
     <Section>
