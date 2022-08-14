@@ -53,7 +53,7 @@ export default function Analytics() {
     setSwitch_fan(data.fan_status);
   }
   let update_pump_status = async () => {
-    const response = await fetch("http://127.0.0.1:8000/Irrigation/update/1/",{
+    const response = await fetch("http://127.0.0.1:8000/Irrigation/update/2/",{
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -79,10 +79,10 @@ export default function Analytics() {
     fetchPumpData();
   }, []);
 
-  const fan_status = fan.filter(y => y.id === 1).map(x => x.fan_status);
-  const fan_id = fan.filter(y => y.id === 1).map(x => x.fan_id);
-  const pump_status = pump.filter(y => y.id === 1).map(x => x.pump_status);
-  const pump_id = pump.filter(y => y.id === 1).map(x => x.pump_id);
+  const fan_status = fan.filter(y => y.id === 1).map(x => x.status);
+  const fan_id = fan.filter(y => y.id === 1).map(x => x.device_Id);
+  const pump_status = pump.filter(y => y.id === 1).map(x => x.status);
+  const pump_id = pump.filter(y => y.id === 2).map(x => x.device_Id);
 
   return (
     <Section>
