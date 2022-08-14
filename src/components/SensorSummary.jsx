@@ -12,6 +12,40 @@ export default function SensorSummary() {
   const [humidity, setHumidity] = useState([]);
   const [lux, setLux] = useState([]);
 
+  const fetchSensorData = async (url) => {
+    let urlEndpoint = url.slice(url.indexOf('/',7)+1, url.length-1);
+    if (urlEndpoint === 'tempSensor'){
+      try {
+        const response = await fetch(url);
+        const datapoints = await response.json();
+        setTemperature(datapoints);
+        console.log(temperature);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    else if(urlEndpoint === 'HumdSensor'){
+      try {
+        const response = await fetch(url);
+        const datapoints = await response.json();
+        setHumidity(datapoints);
+        console.log(humidity);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    else if(urlEndpoint === 'LuxSensor'){
+      try {
+        const response = await fetch(url);
+        const datapoints = await response.json();
+        setLux(datapoints);
+        console.log(lux);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   const connectToStream = () => {
     try {
 
@@ -40,6 +74,9 @@ export default function SensorSummary() {
   };
 
   useEffect(() =>{
+    fetchSensorData("http://127.0.0.1:8000/tempSensor/");
+    fetchSensorData("http://127.0.0.1:8000/HumdSensor/");
+    fetchSensorData("http://127.0.0.1:8000/LuxSensor/");
     connectToStream();
 }, []);
 
@@ -48,20 +85,20 @@ export default function SensorSummary() {
       image: avatarImage,
       name: "Temp Sensor",
       time: `Today, ${temperature.slice(-1).map(x => x.recorded_time)}`,
-      amount: temperature.slice(-1).map(x => x.temp_value)
+      amount: parseInt(temperature.slice(-1).map(x => x.value))
       .toString()+String.fromCodePoint(8451),
     },
     {
       image: humdIcon,
       name: "Humd Sensor",
       time: `Today, ${humidity.slice(-1).map(x => x.recorded_time)}`,
-      amount: humidity.slice(-1).map(x => x.humd_value).toString()+' %'
+      amount: parseInt(humidity.slice(-1).map(x => x.value)).toString()+' %'
     },
     {
       image: sunIcon,
       name: "Lux Sensor",
       time: `Today, ${lux.slice(-1).map(x => x.recorded_time)}`,
-      amount: lux.slice(-1).map(x => x.lux_value).toString()+' lx',
+      amount: parseInt(lux.slice(-1).map(x => x.value)).toString()+' lx',
     },
   ];
   return (
