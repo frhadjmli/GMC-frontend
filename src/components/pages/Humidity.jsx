@@ -1,7 +1,7 @@
 import React from 'react'
 import CustomDataTable from '../CustomDataTable'
 const Humidity = () => {
-    const url = "http://127.0.0.1:8000/HumdSensor/";
+    const url = "http://127.0.0.1:8000/SensorValueInfo/2/";
     const columns = [
         {
           name: "id",
@@ -10,12 +10,12 @@ const Humidity = () => {
         },
         {
           name: "sensor_id",
-          selector: row => row.sensor_id,
+          selector: row => row.sensor_Id,
           sortable: true
         },
         {
-          name: "humd_value",
-          selector: row => row.humd_value,
+          name: "humid_value",
+          selector: row => row.value,
           sortable: true,
         },
         {
@@ -30,7 +30,7 @@ const Humidity = () => {
         },
         {
           name: "point",
-          selector: row => row.point,
+          selector: row => row.point_id,
           sortable: true
         }
     ];

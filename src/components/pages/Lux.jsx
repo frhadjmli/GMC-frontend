@@ -1,7 +1,7 @@
 import React from 'react'
 import CustomDataTable from '../CustomDataTable'
 const Lux = () => {
-    const url = "http://127.0.0.1:8000/LuxSensor/";
+    const url = "http://127.0.0.1:8000/SensorValueInfo/3/";
     const columns = [
         {
           name: "id",
@@ -10,12 +10,12 @@ const Lux = () => {
         },
         {
           name: "sensor_id",
-          selector: row => row.sensor_id,
+          selector: row => row.sensor_Id,
           sortable: true
         },
         {
           name: "lux_value",
-          selector: row => row.lux_value,
+          selector: row => row.value,
           sortable: true,
         },
         {
@@ -30,7 +30,7 @@ const Lux = () => {
         },
         {
           name: "point",
-          selector: row => row.point,
+          selector: row => row.point_id,
           sortable: true
         }
     ];
