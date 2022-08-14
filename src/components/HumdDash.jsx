@@ -56,7 +56,7 @@ const data = {
   datasets:[
     {
       label: "Humidity Data",
-      data: humidity.slice(-10).map(x => x.humd_value),
+      data: humidity.slice(-10).map(x => x.value),
       fill: true,
       borderColor: "#a78842"
     }
