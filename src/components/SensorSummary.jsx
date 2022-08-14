@@ -14,7 +14,7 @@ export default function SensorSummary() {
 
   const fetchSensorData = async (url) => {
     let urlEndpoint = url.slice(url.indexOf('/',7)+1, url.length-1);
-    if (urlEndpoint === 'tempSensor'){
+    if (urlEndpoint[urlEndpoint.length-1] === '1'){
       try {
         const response = await fetch(url);
         const datapoints = await response.json();
@@ -24,7 +24,7 @@ export default function SensorSummary() {
         console.log(error);
       }
     }
-    else if(urlEndpoint === 'HumdSensor'){
+    else if(urlEndpoint[urlEndpoint.length-1] === '2'){
       try {
         const response = await fetch(url);
         const datapoints = await response.json();
@@ -34,7 +34,7 @@ export default function SensorSummary() {
         console.log(error);
       }
     }
-    else if(urlEndpoint === 'LuxSensor'){
+    else if(urlEndpoint[urlEndpoint.length-1] === '3'){
       try {
         const response = await fetch(url);
         const datapoints = await response.json();
@@ -74,9 +74,9 @@ export default function SensorSummary() {
   };
 
   useEffect(() =>{
-    fetchSensorData("http://127.0.0.1:8000/tempSensor/");
-    fetchSensorData("http://127.0.0.1:8000/HumdSensor/");
-    fetchSensorData("http://127.0.0.1:8000/LuxSensor/");
+    fetchSensorData("http://127.0.0.1:8000/SensorValueInfo/1/");
+    fetchSensorData("http://127.0.0.1:8000/SensorValueInfo/2/");
+    fetchSensorData("http://127.0.0.1:8000/SensorValueInfo/3/");
     connectToStream();
 }, []);
 
