@@ -3,7 +3,7 @@ Hydroponic Greenhouse Monitoring and Controlling
 
 ## TO-DO :
 
-- [ ] fix login.jsx styles 
+- [X] fix login.jsx styles 
 - [X] add more components to "./pages"
 - [X] add 'Link' tag to related elements
 - [X] add redirection to login and logout elements
