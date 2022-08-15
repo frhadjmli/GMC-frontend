@@ -135,10 +135,8 @@ const InputContent = styled.div`
       height: 20px;
     }
     &:focus-within {
-      border-color: #697A21;
-      svg {
-        color: #697A21;
-      }
+      outline: 3px ridge rgba(105, 122, 33, .8);
+      border-radius: 1rem;
     }
 `;
 
