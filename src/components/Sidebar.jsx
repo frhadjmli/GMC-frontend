@@ -119,9 +119,9 @@ export default function Sidebar() {
                 className={currentLink === 6 ? "active" : "none"}
                 onClick={() => setCurrentLink(6)}
               >
-                <a href="#">
+                <a href="">
                   <MdMessage />
-                  <span> Messages</span>
+                  <span onClick={(e)=>{e.preventDefault();navigate("/alarm");}}> Alarm Messages</span>
                 </a>
               </li>
             </ul>
@@ -186,9 +186,9 @@ export default function Sidebar() {
               className={currentLink === 6 ? "active" : "none"}
               onClick={() => setCurrentLink(6)}
             >
-              <a href="#">
+              <a href="">
                 <MdMessage />
-                <span> Messages</span>
+                <span onClick={(e)=>{e.preventDefault();navigate("/alarm");}}> Alarm Messages</span>
               </a>
             </li>
             <hr />
