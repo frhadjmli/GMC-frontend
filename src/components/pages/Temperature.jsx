@@ -1,5 +1,8 @@
 import React from 'react'
+import styled from "styled-components";
 import CustomDataTable from '../CustomDataTable'
+import Sidebar from '../Sidebar'
+
 const Temperature = () => {
     const url = "http://127.0.0.1:8000/SensorValueInfo/1/";
     const columns = [
@@ -38,13 +41,21 @@ const Temperature = () => {
     const title_table = 'Temprature Log'
 
   return (
-    <CustomDataTable 
+    <Div>
+      <Sidebar />
+      <CustomDataTable 
      url={url}
      columns={columns}
      search_column_field={search_column_field}
      title_table={title_table}
     />
+    </Div>
+    
   )
 }
 
 export default Temperature
+
+const Div = styled.div`
+  position: relative;
+`;

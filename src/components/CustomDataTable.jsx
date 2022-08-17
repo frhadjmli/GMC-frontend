@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios'
 import styled from "styled-components";
-import Sidebar from "../components/Sidebar";
 import DataTable, {createTheme} from "react-data-table-component";
 import { FcRefresh } from "react-icons/fc";
 import { useEffect } from "react";
@@ -65,8 +64,6 @@ const CustomDataTable = ({url,columns,search_column_field,title_table}) => {
     }, [search]);
 
     return (
-        <Div>
-          <Sidebar />
           <Section>
             <DataTable title={title_table}
               columns={columns}
@@ -95,15 +92,13 @@ const CustomDataTable = ({url,columns,search_column_field,title_table}) => {
                     textAlign: "center" }}/>}
               />     
           </Section>  
-        </Div>
+
   );
 }
 
 export default CustomDataTable;
 
-const Div = styled.div`
-  position: relative;
-`;
+
 
 const Section = styled.section`
   margin-left: 18vw;
