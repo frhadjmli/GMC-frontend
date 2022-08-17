@@ -34,7 +34,7 @@ const Humidity = () => {
           sortable: true
         }
     ];
-    const search_column_field = 'humd_value';
+    const search_column_field = 'value';
     const title_table = 'Humidity Log'
 
   return (

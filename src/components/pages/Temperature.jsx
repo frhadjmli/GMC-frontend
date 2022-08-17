@@ -34,7 +34,7 @@ const Temperature = () => {
         sortable: true
       }
     ];
-    const search_column_field = 'temp_value';
+    const search_column_field = 'value';
     const title_table = 'Temprature Log'
 
   return (

@@ -34,7 +34,7 @@ const Lux = () => {
           sortable: true
         }
     ];
-    const search_column_field = 'lux_value';
+    const search_column_field = 'value';
     const title_table = 'Lux Log'
 
   return (
