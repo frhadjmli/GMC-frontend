@@ -8,6 +8,7 @@ import Humidity from './components/pages/Humidity'
 import Lux from './components/pages/Lux'
 import PrivateRoutes from './utils/PrivateRoutes'
 import { AuthProvider } from './context/AuthContext'
+import Alarm from './components/pages/Alarm'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/temperature" element={<Temperature />}/>
           <Route path="/humidity" element={<Humidity />}/>
           <Route path="/lux" element={<Lux />}/>
+          <Route path="/alarm" element={<Alarm />}/>
           <Route path="/" element={<Home />}/>
         </Route>
 
