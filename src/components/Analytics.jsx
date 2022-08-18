@@ -12,8 +12,8 @@ export default function Analytics() {
 
   const [fan, setFan] = useState([]);
   const [pump, setPump] = useState([]);
-  const [switch_fan , setSwitch_fan] = useState(false);
-  const [switch_pump , setSwitch_pump] = useState(false);
+  const [switch_fan , setSwitch_fan] = useState();
+  const [switch_pump , setSwitch_pump] = useState();
 
   const fetchFanData = async () => {
     try {
@@ -21,7 +21,8 @@ export default function Analytics() {
       const response = await fetch(url);
       const datapoints = await response.json();
       setFan(datapoints);
-      console.log(fan);
+      setSwitch_fan(datapoints[0].status)
+      console.log('fan status is =', switch_fan);
       
     } catch (error) {
       console.log(error);
@@ -33,7 +34,8 @@ export default function Analytics() {
       const response = await fetch(url);
       const datapoints = await response.json();
       setPump(datapoints);
-      console.log(pump);
+      setSwitch_pump(datapoints[0].status);
+      console.log('pump status is =', switch_pump);
       
     } catch (error) {
       console.log(error);
@@ -50,7 +52,7 @@ export default function Analytics() {
     })
     const data = await response.json();
     console.log("data.fan_status", data.status);
-    setSwitch_fan(data.status);
+    //setSwitch_fan(data.status);
   }
   let update_pump_status = async () => {
     const response = await fetch("http://127.0.0.1:8000/DeviceValueInfo/update/2/",{
@@ -62,7 +64,7 @@ export default function Analytics() {
     })
     const data = await response.json();
     console.log("data.pump_status", data.status);
-    setSwitch_pump(data.status);
+    // setSwitch_pump(data.status);
   }
 
   const toggleFanSwitch = () => {
@@ -91,7 +93,7 @@ export default function Analytics() {
           <div className="content">
             <h4>{pump_id}</h4>
             <h5>{switch_pump ? 'ON':'OFF'}</h5>
-            <ReactSwitch onChange={togglePumpSwitch} checked={switch_pump === true}/>
+            <ReactSwitch onChange={togglePumpSwitch} checked={switch_pump}/>
           </div>
           <div className="logo">
             <FaWater />
@@ -105,7 +107,7 @@ export default function Analytics() {
           <div className="content">
             <h4>{fan_id}</h4>
             <h5>{switch_fan ? 'ON':'OFF'}</h5>
-            <ReactSwitch onChange={toggleFanSwitch} checked={switch_fan === true}/>
+            <ReactSwitch onChange={toggleFanSwitch} checked={switch_fan}/>
           </div>
         </div>
     
