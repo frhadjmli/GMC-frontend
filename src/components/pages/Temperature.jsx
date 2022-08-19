@@ -3,7 +3,7 @@ import styled from "styled-components";
 import CustomDataTable from '../CustomDataTable'
 import Sidebar from '../Sidebar'
 
-const Temperature = () => {
+const Temperature = ({alarmNotSeen,seenAlarm}) => {
     const url = "http://127.0.0.1:8000/SensorValueInfo/1/";
     const columns = [
       {
@@ -42,7 +42,7 @@ const Temperature = () => {
 
   return (
     <Div>
-      <Sidebar />
+      <Sidebar alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>
       <CustomDataTable 
      url={url}
      columns={columns}
