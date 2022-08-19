@@ -12,7 +12,7 @@ import { VscChromeClose } from "react-icons/vsc";
 import scrollreveal from "scrollreveal";
 import AuthContext from '../context/AuthContext';
 
-export default function Sidebar() {
+export default function Sidebar({alarmNotSeen ,seenAlarm}) {
 
   let navigate = useNavigate();
   let {logoutUser} = useContext(AuthContext)
@@ -48,6 +48,7 @@ export default function Sidebar() {
     );
   }, []);
 
+  
   return (
     <>
       <Section>
@@ -121,7 +122,7 @@ export default function Sidebar() {
               >
                 <a href="">
                   <MdMessage />
-                  <span onClick={(e)=>{e.preventDefault();navigate("/alarm");}}> Alarm Messages</span>
+                  <span onClick={(e)=>{e.preventDefault();seenAlarm();navigate("/alarm");}}> Alarm Messages</span>{alarmNotSeen.length ? <Span>{alarmNotSeen.length}</Span> : <span></span>}
                 </a>
               </li>
             </ul>
@@ -188,7 +189,7 @@ export default function Sidebar() {
             >
               <a href="">
                 <MdMessage />
-                <span onClick={(e)=>{e.preventDefault();navigate("/alarm");}}> Alarm Messages</span>
+                <span onClick={(e)=>{e.preventDefault();seenAlarm();navigate("/alarm");}}> Alarm Messages</span>{alarmNotSeen.length ? <Span>{alarmNotSeen.length}</Span> : <span></span>}
               </a>
             </li>
             <hr />
@@ -204,6 +205,13 @@ export default function Sidebar() {
     </>
   );
 }
+
+const Span = styled.span`
+background-color: red;
+border-radius: 0.6rem;
+padding : 0.2rem;
+`;
+
 const Section = styled.section`
   position: fixed;
   left: 0;
