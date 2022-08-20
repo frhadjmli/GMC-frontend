@@ -43,6 +43,18 @@ const Alarm = ({alarmNotSeen,seenAlarm,tempAlarmNotSeen}) => {
         setShowLog(curVal => !curVal)
     }
 
+    const showLastAlarm = (alarmNotSeenLength , tempAlarmNotSeenLength) => {
+
+      if(alarmNotSeenLength && tempAlarmNotSeenLength)
+        return <h2>last alarm {alarmNotSeenLength + tempAlarmNotSeenLength}</h2>
+      else if (alarmNotSeenLength)
+        return <h2>last alarm {alarmNotSeenLength}</h2>
+      else if (tempAlarmNotSeenLength)
+        return <h2>last alarm {tempAlarmNotSeenLength}</h2>
+
+      else return <h3>you can see log - click on show log</h3>
+    }
+
   return (
     <Div>
         <Sidebar alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>
@@ -51,8 +63,7 @@ const Alarm = ({alarmNotSeen,seenAlarm,tempAlarmNotSeen}) => {
         {!showLog && 
             <Section>
               <div className="grid">
-                {alarmNotSeen.length ? <h2>last alarm {alarmNotSeen.length}</h2> : tempAlarmNotSeen.length? <h2>last alarm {tempAlarmNotSeen.length}</h2> :<h3>you can see log - click on show log</h3>}
-                                        
+                {showLastAlarm(alarmNotSeen.length,tempAlarmNotSeen.length)}        
                 <div className="row__one">
                     
                     {alarmNotSeen.map(x =>
