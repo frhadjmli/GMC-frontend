@@ -7,7 +7,7 @@ import Navbar from "./Navbar";
 import Profile from "./Profile";
 import SensorSummary from "./SensorSummary";
 import scrollreveal from "scrollreveal";
-export default function Dashboard() {
+export default function Dashboard({alarmNotSeen}) {
   useEffect(() => {
     const sr = scrollreveal({
       origin: "bottom",
@@ -38,7 +38,7 @@ export default function Dashboard() {
         <div className="row__two">
           <TempDash />
           <SensorSummary />
-          <Profile />
+          <Profile alarmNotSeen={alarmNotSeen}/>
         </div>
       </div>
     </Section>

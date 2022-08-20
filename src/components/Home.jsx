@@ -6,7 +6,7 @@ export default function Home({alarmNotSeen,seenAlarm}) {
   return (
     <Div>
         <Sidebar alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>
-        <Dashboard />
+        <Dashboard alarmNotSeen={alarmNotSeen}/>
     </Div> 
   );
 }
