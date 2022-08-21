@@ -9,6 +9,7 @@ import Lux from './components/pages/Lux'
 import PrivateRoutes from './utils/PrivateRoutes'
 import { AuthProvider } from './context/AuthContext'
 import Alarm from './components/pages/Alarm'
+import Switch from './components/pages/Switch'
 
 export default function App() {
 
@@ -79,6 +80,7 @@ export default function App() {
           <Route path="/humidity" element={<Humidity alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>}/>
           <Route path="/lux" element={<Lux alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>}/>
           <Route path="/alarm" element={<Alarm alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm} tempAlarmNotSeen={tempAlarmNotSeen}/>}/>
+          <Route path="/switch" element={<Switch alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>}/>
           <Route path="/" element={<Home alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>}/>
         </Route>
 
