@@ -111,9 +111,9 @@ export default function Sidebar({alarmNotSeen ,seenAlarm}) {
                 className={currentLink === 5 ? "active" : "none"}
                 onClick={() => setCurrentLink(5)}
               >
-                <a href="#">
+                <a href="">
                   <AiOutlineControl />
-                  <span> Switches</span>
+                  <span onClick={(e)=>{e.preventDefault();navigate("/switch");}}> Switches</span>
                 </a>
               </li>
               <li
@@ -178,9 +178,9 @@ export default function Sidebar({alarmNotSeen ,seenAlarm}) {
               className={currentLink === 5 ? "active" : "none"}
               onClick={() => setCurrentLink(5)}
             >
-              <a href="#">
+              <a href="">
                 <AiOutlineControl />
-                <span> Switches</span>
+                <span onClick={(e)=>{e.preventDefault();navigate("/switch");}}> Switches</span>
               </a>
             </li>
             <li
