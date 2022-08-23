@@ -20,7 +20,7 @@ export default function TempDash() {
   const [temperature, setTemperature] = useState([]);
   
   async function fetchTempData(){
-    const url = "http://127.0.0.1:8000/SensorValueInfo/1/";
+    const url = "http://127.0.0.1:8000/api/SensorValueInfo/1/";
     const response = await fetch(url);
     const datapoints = await response.json();
     setTemperature(datapoints);

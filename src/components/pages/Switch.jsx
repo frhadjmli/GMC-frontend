@@ -18,7 +18,7 @@ const Switch = ({alarmNotSeen,seenAlarm}) => {
     };
   
     useEffect(() =>{
-        getSensorTypeRange("http://127.0.0.1:8000/SensorTypeRange/");
+        getSensorTypeRange("http://127.0.0.1:8000/api/SensorTypeRange/");
 
   }, []);
 

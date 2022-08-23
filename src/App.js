@@ -27,7 +27,7 @@ export default function App() {
   };
 
   const seenAlarm = async () => {
-    const response = await fetch("http://127.0.0.1:8000/AlarmMessage/update/",{
+    const response = await fetch("http://127.0.0.1:8000/api/AlarmMessage/update/",{
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -39,7 +39,7 @@ export default function App() {
   }
 
   useEffect(() =>{
-    getAlarmNotSeen("http://127.0.0.1:8000/AlarmMessage/notSeen/");
+    getAlarmNotSeen("http://127.0.0.1:8000/api/AlarmMessage/notSeen/");
     connectToStream();
    }, []);
    

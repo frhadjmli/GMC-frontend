@@ -17,7 +17,7 @@ export default function Analytics() {
 
   const fetchFanData = async () => {
     try {
-      const url = "http://127.0.0.1:8000/DeviceValueInfo/1/";
+      const url = "http://127.0.0.1:8000/api/DeviceValueInfo/1/";
       const response = await fetch(url);
       const datapoints = await response.json();
       setFan(datapoints);
@@ -30,7 +30,7 @@ export default function Analytics() {
   };
   const fetchPumpData = async () => {
     try {
-      const url = "http://127.0.0.1:8000/DeviceValueInfo/2/";
+      const url = "http://127.0.0.1:8000/api/DeviceValueInfo/2/";
       const response = await fetch(url);
       const datapoints = await response.json();
       setPump(datapoints);
@@ -43,7 +43,7 @@ export default function Analytics() {
   };
 
   let update_fan_status = async () => {
-    const response = await fetch("http://127.0.0.1:8000/DeviceValueInfo/update/1/",{
+    const response = await fetch("http://127.0.0.1:8000/api/DeviceValueInfo/update/1/",{
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ export default function Analytics() {
     //setSwitch_fan(data.status);
   }
   let update_pump_status = async () => {
-    const response = await fetch("http://127.0.0.1:8000/DeviceValueInfo/update/2/",{
+    const response = await fetch("http://127.0.0.1:8000/api/DeviceValueInfo/update/2/",{
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'

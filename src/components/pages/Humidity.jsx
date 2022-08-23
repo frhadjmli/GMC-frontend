@@ -4,7 +4,7 @@ import CustomDataTable from '../CustomDataTable'
 import Sidebar from '../Sidebar'
 
 const Humidity = ({alarmNotSeen ,seenAlarm}) => {
-    const url = "http://127.0.0.1:8000/SensorValueInfo/2/";
+    const url = "http://127.0.0.1:8000/api/SensorValueInfo/2/";
     const columns = [
         {
           name: "id",

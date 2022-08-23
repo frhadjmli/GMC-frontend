@@ -18,7 +18,7 @@ export default function Profile({alarmNotSeen}) {
   };
 
   useEffect(() =>{
-    getCount("http://127.0.0.1:8000/CountSensorDevice/");
+    getCount("http://127.0.0.1:8000/api/CountSensorDevice/");
 }, []);
   
   return (

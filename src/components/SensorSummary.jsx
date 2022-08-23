@@ -74,9 +74,9 @@ export default function SensorSummary() {
   };
 
   useEffect(() =>{
-    fetchSensorData("http://127.0.0.1:8000/SensorValueInfo/1/");
-    fetchSensorData("http://127.0.0.1:8000/SensorValueInfo/2/");
-    fetchSensorData("http://127.0.0.1:8000/SensorValueInfo/3/");
+    fetchSensorData("http://127.0.0.1:8000/api/SensorValueInfo/1/");
+    fetchSensorData("http://127.0.0.1:8000/api/SensorValueInfo/2/");
+    fetchSensorData("http://127.0.0.1:8000/api/SensorValueInfo/3/");
     connectToStream();
 }, []);
 

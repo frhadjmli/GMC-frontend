@@ -8,7 +8,7 @@ const Alarm = ({alarmNotSeen,seenAlarm,tempAlarmNotSeen}) => {
 
     const [showLog,setShowLog] = useState(false)
 
-    const url = "http://127.0.0.1:8000/AlarmMessage/";
+    const url = "http://127.0.0.1:8000/api/AlarmMessage/";
     const columns = [
       {
         name: "id",

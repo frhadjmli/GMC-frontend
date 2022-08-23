@@ -4,7 +4,7 @@ import CustomDataTable from '../CustomDataTable'
 import Sidebar from '../Sidebar'
 
 const Temperature = ({alarmNotSeen,seenAlarm}) => {
-    const url = "http://127.0.0.1:8000/SensorValueInfo/1/";
+    const url = "http://127.0.0.1:8000/api/SensorValueInfo/1/";
     const columns = [
       {
         name: "id",
