@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,7 +12,9 @@ export const AuthProvider = ({children}) => {
     
     let[authTokens,setAuthTokens] = useState(()=> localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null);
     
-    let navigate = useNavigate();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     let loginUser = async (e )=> {
         e.preventDefault()
@@ -27,7 +29,7 @@ export const AuthProvider = ({children}) => {
        if(response.status === 200){
            setAuthTokens(data)
            localStorage.setItem('authTokens', JSON.stringify(data))
-           navigate('/')
+           navigate(from, {replace: true})
        }else{
            toast.error("Wrong Username Or Password!!!")
        }
