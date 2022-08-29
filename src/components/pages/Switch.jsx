@@ -3,13 +3,21 @@ import styled from "styled-components";
 import { cardStyles } from "../ReusableStyles";
 import CounterRange from '../CounterRange'
 import Sidebar from '../Sidebar'
+import useAuth from '../../hooks/useAuth'
 
 const Switch = ({alarmNotSeen,seenAlarm}) => {
     const [sensorTypeRange, setSensorTypeRange] = useState([]);
 
+    const {authTokens} = useAuth();
+
     const getSensorTypeRange = async (url) => {
       try{
-          const response = await fetch(url);
+          const response = await fetch(url,{
+            method:'GET',
+            headers:{
+                'Authorization': `token ${authTokens.token}`
+            }
+          });
           const data = await response.json();
           setSensorTypeRange(data);
       } catch (error) {
