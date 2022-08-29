@@ -11,6 +11,11 @@ import { AuthProvider } from './context/AuthContext'
 import Alarm from './components/pages/Alarm'
 import Switch from './components/pages/Switch'
 
+const ROLES = {
+  'NormalUser': 'N',
+  'Admin': 'A'
+}
+
 export default function App() {
 
   const [alarmNotSeen,setAlarmNotSeen] = useState([])
@@ -75,17 +80,20 @@ export default function App() {
     <Router>
       <Routes>
 
-        <Route element={<AuthProvider> <PrivateRoutes /> </AuthProvider>}>
+        <Route element={<AuthProvider> <PrivateRoutes allowedRoles={[ROLES.NormalUser,ROLES.Admin]}/> </AuthProvider>}>
           <Route path="/temperature" element={<Temperature alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>}/>
           <Route path="/humidity" element={<Humidity alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>}/>
           <Route path="/lux" element={<Lux alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>}/>
           <Route path="/alarm" element={<Alarm alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm} tempAlarmNotSeen={tempAlarmNotSeen}/>}/>
-          <Route path="/switch" element={<Switch alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>}/>
           <Route path="/" element={<Home alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>}/>
+        </Route>
+        <Route element={<AuthProvider> <PrivateRoutes allowedRoles={[ROLES.Admin]}/> </AuthProvider>}>
+          <Route path="/switch" element={<Switch alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>}/>
         </Route>
 
         <Route path="/login" element={<AuthProvider> <Login /> </AuthProvider>}/>
-        <Route path="*" element={<p>There's nothing here: 404!</p>} />
+        <Route path="/unauthorizad" element={<p style={{color:'#fff'}}>unauthorizad!</p>}/>
+        <Route path="*" element={<p style={{color:'#fff'}}>There's nothing here: 404!</p>} />
       </Routes>
     </Router>
   );
