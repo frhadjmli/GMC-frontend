@@ -5,6 +5,7 @@ CategoryScale, LinearScale, Title, Tooltip} from "chart.js";
 import { Line } from "react-chartjs-2";
 import { cardStyles } from "./ReusableStyles";
 import { useState, useEffect } from "react";
+import useAuth from '../hooks/useAuth';
 
 ChartJS.register(
   CategoryScale,
@@ -18,10 +19,16 @@ ChartJS.register(
 export default function TempDash() {
 
   const [temperature, setTemperature] = useState([]);
+  const {authTokens} = useAuth();
   
   async function fetchTempData(){
     const url = "http://127.0.0.1:8000/api/SensorValueInfo/1/";
-    const response = await fetch(url);
+    const response = await fetch(url,{
+      method:'GET',
+      headers:{
+          'Authorization': `token ${authTokens.token}`
+      }
+  });
     const datapoints = await response.json();
     setTemperature(datapoints);
     console.log(temperature);

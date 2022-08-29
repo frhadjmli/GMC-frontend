@@ -4,6 +4,7 @@ import styled from "styled-components";
 import DataTable, {createTheme} from "react-data-table-component";
 import { FcRefresh } from "react-icons/fc";
 import { useEffect } from "react";
+import useAuth from '../hooks/useAuth';
 
 const CustomDataTable = ({url,columns,search_column_field,title_table}) => {
 
@@ -40,14 +41,22 @@ const CustomDataTable = ({url,columns,search_column_field,title_table}) => {
     const [items, setItems] =useState([]);
     const [filteredItems, setfilteredItems] =useState([]);
     
+    const {authTokens} = useAuth();
+
     const getItems = async () => {
         try{
-            const response = await axios.get(url);  
-            setItems(response.data);
-            setfilteredItems(response.data);
-        } catch (error) {
-            console.log(error);
-        }
+            const response = await fetch(url,{
+              method:'GET',
+              headers:{
+                  'Authorization': `token ${authTokens.token}`
+              }
+            });
+            const data = await response.json();
+            setItems(data);
+            setfilteredItems(data);
+          } catch (error) {
+              console.log(error);
+          }
     };
 
     useEffect(() =>{

@@ -5,18 +5,25 @@ import avatarImage from "../assets/temperature.png";
 import humdIcon from "../assets/humidity.png";
 import sunIcon from "../assets/sun.png";
 import { cardStyles } from "./ReusableStyles";
+import useAuth from '../hooks/useAuth';
 
 export default function SensorSummary() {
 
   const [temperature, setTemperature] = useState([]);
   const [humidity, setHumidity] = useState([]);
   const [lux, setLux] = useState([]);
+  const {authTokens} = useAuth();
 
   const fetchSensorData = async (url) => {
     let urlEndpoint = url.slice(url.indexOf('/',7)+1, url.length-1);
     if (urlEndpoint[urlEndpoint.length-1] === '1'){
       try {
-        const response = await fetch(url);
+        const response = await fetch(url,{
+          method:'GET',
+          headers:{
+              'Authorization': `token ${authTokens.token}`
+          }
+      });
         const datapoints = await response.json();
         setTemperature(datapoints);
         console.log(temperature);
@@ -26,7 +33,12 @@ export default function SensorSummary() {
     }
     else if(urlEndpoint[urlEndpoint.length-1] === '2'){
       try {
-        const response = await fetch(url);
+        const response = await fetch(url,{
+          method:'GET',
+          headers:{
+              'Authorization': `token ${authTokens.token}`
+          }
+      });
         const datapoints = await response.json();
         setHumidity(datapoints);
         console.log(humidity);
@@ -36,7 +48,12 @@ export default function SensorSummary() {
     }
     else if(urlEndpoint[urlEndpoint.length-1] === '3'){
       try {
-        const response = await fetch(url);
+        const response = await fetch(url,{
+          method:'GET',
+          headers:{
+              'Authorization': `token ${authTokens.token}`
+          }
+      });
         const datapoints = await response.json();
         setLux(datapoints);
         console.log(lux);

@@ -7,6 +7,7 @@ import { BiGroup } from "react-icons/bi";
 import { FiActivity } from "react-icons/fi";
 import { cardStyles } from "./ReusableStyles";
 import ReactSwitch from "react-switch";
+import useAuth from '../hooks/useAuth';
 
 export default function Analytics() {
 
@@ -15,10 +16,17 @@ export default function Analytics() {
   const [switch_fan , setSwitch_fan] = useState();
   const [switch_pump , setSwitch_pump] = useState();
 
+  const {authTokens} = useAuth();
+
   const fetchFanData = async () => {
     try {
       const url = "http://127.0.0.1:8000/api/DeviceValueInfo/1/";
-      const response = await fetch(url);
+      const response = await fetch(url,{
+        method:'GET',
+        headers:{
+            'Authorization': `token ${authTokens.token}`
+        }
+    });
       const datapoints = await response.json();
       setFan(datapoints);
       setSwitch_fan(datapoints[0].status)
@@ -31,7 +39,12 @@ export default function Analytics() {
   const fetchPumpData = async () => {
     try {
       const url = "http://127.0.0.1:8000/api/DeviceValueInfo/2/";
-      const response = await fetch(url);
+      const response = await fetch(url,{
+        method:'GET',
+        headers:{
+            'Authorization': `token ${authTokens.token}`
+        }
+    });
       const datapoints = await response.json();
       setPump(datapoints);
       setSwitch_pump(datapoints[0].status);
@@ -46,7 +59,8 @@ export default function Analytics() {
     const response = await fetch("http://127.0.0.1:8000/api/DeviceValueInfo/update/1/",{
         method: "PUT",
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `token ${authTokens.token}`
         },
         body:{}
     })
@@ -58,7 +72,8 @@ export default function Analytics() {
     const response = await fetch("http://127.0.0.1:8000/api/DeviceValueInfo/update/2/",{
         method: "PUT",
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `token ${authTokens.token}`
         },
         body:{}
     })

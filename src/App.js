@@ -23,7 +23,12 @@ export default function App() {
 
   const getAlarmNotSeen = async (url) => {
     try{
-        const response = await fetch(url);
+        const response = await fetch(url,{
+          method:'GET',
+          headers:{
+              'Authorization': `token ${JSON.parse(localStorage.getItem('authTokens')).token}`
+          }
+      });
         const data = await response.json();
         setAlarmNotSeen(data);
     } catch (error) {
@@ -35,7 +40,8 @@ export default function App() {
     const response = await fetch("http://127.0.0.1:8000/api/AlarmMessage/update/",{
         method: "PUT",
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `token ${JSON.parse(localStorage.getItem('authTokens')).token}`
         },
         body:{}
     })

@@ -3,13 +3,21 @@ import styled from "styled-components";
 import image from "../assets/greenhouse-profile.jpeg";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { cardStyles } from "./ReusableStyles";
+import useAuth from '../hooks/useAuth';
+
 export default function Profile({alarmNotSeen}) {
 
   const [count, setCount] = useState({});
+  const {authTokens} = useAuth();
 
   const getCount = async (url) => {
     try{
-        const response = await fetch(url);
+        const response = await fetch(url,{
+          method:'GET',
+          headers:{
+              'Authorization': `token ${authTokens.token}`
+          }
+      });
         const data = await response.json();
         setCount(data);
     } catch (error) {

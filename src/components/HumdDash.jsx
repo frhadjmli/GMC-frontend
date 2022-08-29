@@ -5,6 +5,8 @@ import { Chart as ChartJS, LineElement, PointElement,
 CategoryScale, LinearScale, Title, Tooltip} from "chart.js";
 import { Line } from "react-chartjs-2";
 import { cardStyles } from "./ReusableStyles";
+import useAuth from '../hooks/useAuth';
+
 export default function HumdDash() {
 
   ChartJS.register(
@@ -17,11 +19,18 @@ export default function HumdDash() {
   );
 
   const [humidity, setHumidity] = useState([]);
+  const {authTokens} = useAuth();
+
 
   const fetchHumdData = async () => {
     try {
       const url = "http://127.0.0.1:8000/api/SensorValueInfo/2/";
-      const response = await fetch(url);
+      const response = await fetch(url,{
+        method:'GET',
+        headers:{
+            'Authorization': `token ${authTokens.token}`
+        }
+    });
       const datapoints = await response.json();
       setHumidity(datapoints);
       console.log(humidity);

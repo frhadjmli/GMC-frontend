@@ -2,11 +2,14 @@ import React,{useState,useEffect} from 'react'
 import styled from "styled-components";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useAuth from '../hooks/useAuth';
 
 const CounterRange = ({min_range,max_range,id}) => {
 
   const [minVal,setMinVal] = useState()
   const [maxVal,setMaxVal] = useState()
+
+  const {authTokens} = useAuth()
 
 
   const handleIncreaseMinVal = () =>{
@@ -56,7 +59,8 @@ const CounterRange = ({min_range,max_range,id}) => {
     const response = await fetch(`http://127.0.0.1:8000/api/SensorTypeRange/update/${id}/`,{
         method: "PUT",
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `token ${authTokens.token}`
         },
         body:JSON.stringify({
             "min_range": minVal,
