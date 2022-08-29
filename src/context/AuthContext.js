@@ -35,11 +35,26 @@ export const AuthProvider = ({children}) => {
        }
     }
 
-    let logoutUser = (e) => {
+    let logoutUser = async (e) => {
         e.preventDefault()
-        setAuthTokens(null)
-        localStorage.removeItem('authTokens')
-        navigate('/login')
+        let response = await fetch('http://127.0.0.1:8000/logout/', {
+            method:'POST',
+            headers:{
+                'Authorization': `token ${authTokens.token}`
+            },
+            body:{}
+        })
+
+        let data = await response.json()
+        if(response.status === 200){
+            toast.success(data.message)
+            setAuthTokens(null)
+            localStorage.removeItem('authTokens')
+            navigate('/login')
+        }else{
+           toast.error("somethins wrong!!!")
+        }
+
     }
 
     let contextData = {
