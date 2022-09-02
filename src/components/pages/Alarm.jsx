@@ -21,6 +21,11 @@ const Alarm = ({alarmNotSeen,seenAlarm,tempAlarmNotSeen}) => {
         sortable: true
       },
       {
+        name: "value",
+        selector: row => row.value,
+        sortable: true
+      },
+      {
         name: "recorded_time",
         selector: row => row.recorded_time,
         sortable: true
@@ -70,6 +75,7 @@ const Alarm = ({alarmNotSeen,seenAlarm,tempAlarmNotSeen}) => {
                         <div className="alarm_content">
                           id:{x.id}<br></br>
                           message:{x.body_text}<br></br>
+                          value:{x.value}<br></br>
                           recorded_time:{x.recorded_time}<br></br>
                           date_time:{x.date_time}
                         </div> 
@@ -79,6 +85,7 @@ const Alarm = ({alarmNotSeen,seenAlarm,tempAlarmNotSeen}) => {
                       <div className="alarm_content">
                         id:{x.id}<br></br>
                           message:{x.body_text}<br></br>
+                          value:{x.value}<br></br>
                           recorded_time:{x.recorded_time}<br></br>
                           date_time:{x.date_time}
                       </div>
