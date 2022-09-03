@@ -63,6 +63,7 @@ const Alarm = ({alarmNotSeen,seenAlarm,tempAlarmNotSeen}) => {
   return (
     <Div>
         <Sidebar alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>
+        <br></br>
         <ShowLogBtn onClick={handleClick} >show log</ShowLogBtn>
 
         {!showLog && 
