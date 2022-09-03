@@ -113,7 +113,7 @@ export default function Sidebar({alarmNotSeen ,seenAlarm}) {
               >
                 <a href="">
                   <AiOutlineControl />
-                  <span onClick={(e)=>{e.preventDefault();navigate("/switch");}}> Switches</span>
+                  <span onClick={(e)=>{e.preventDefault();navigate("/alarmRange");}}> AlarmRange</span>
                 </a>
               </li>
               <li
@@ -180,7 +180,7 @@ export default function Sidebar({alarmNotSeen ,seenAlarm}) {
             >
               <a href="">
                 <AiOutlineControl />
-                <span onClick={(e)=>{e.preventDefault();navigate("/switch");}}> Switches</span>
+                <span onClick={(e)=>{e.preventDefault();navigate("/alarmRange");}}> AlarmRange</span>
               </a>
             </li>
             <li

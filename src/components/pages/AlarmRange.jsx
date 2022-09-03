@@ -5,7 +5,7 @@ import CounterRange from '../CounterRange'
 import Sidebar from '../Sidebar'
 import useAuth from '../../hooks/useAuth'
 
-const Switch = ({alarmNotSeen,seenAlarm}) => {
+const AlarmRange = ({alarmNotSeen,seenAlarm}) => {
     const [sensorTypeRange, setSensorTypeRange] = useState([]);
 
     const {authTokens} = useAuth();
@@ -52,7 +52,7 @@ const Switch = ({alarmNotSeen,seenAlarm}) => {
     )
 }
 
-export default Switch
+export default AlarmRange
 
 const Div = styled.div`
   position: relative;

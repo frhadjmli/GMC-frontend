@@ -9,7 +9,7 @@ import Lux from './components/pages/Lux'
 import PrivateRoutes from './utils/PrivateRoutes'
 import { AuthProvider } from './context/AuthContext'
 import Alarm from './components/pages/Alarm'
-import Switch from './components/pages/Switch'
+import AlarmRange from './components/pages/AlarmRange'
 
 const ROLES = {
   'NormalUser': 'N',
@@ -94,7 +94,7 @@ export default function App() {
           <Route path="/" element={<Home alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>}/>
         </Route>
         <Route element={<AuthProvider> <PrivateRoutes allowedRoles={[ROLES.Admin]}/> </AuthProvider>}>
-          <Route path="/switch" element={<Switch alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>}/>
+          <Route path="/alarmRange" element={<AlarmRange alarmNotSeen={alarmNotSeen} seenAlarm={seenAlarm}/>}/>
         </Route>
 
         <Route path="/login" element={<AuthProvider> <Login /> </AuthProvider>}/>
