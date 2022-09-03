@@ -55,7 +55,7 @@ export default function TempDash() {
 }, []);
 
   const data = {
-    labels: temperature.slice(-6).map(x => x.id),  
+    labels: temperature.slice(-6).map(x => x.date_time.substring(x.date_time.length, 2) +" "+ x.recorded_time.substring(0, 5)),  
     datasets:[
       {
         label: "Temperature Data",

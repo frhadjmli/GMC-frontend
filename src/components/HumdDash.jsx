@@ -61,7 +61,7 @@ export default function HumdDash() {
 }, []);
 
 const data = {
-  labels: humidity.slice(-10).map(x => x.id),  
+  labels: humidity.slice(-10).map(x => x.date_time.substring(x.date_time.length, 2) +" "+ x.recorded_time.substring(0, 5)),  
   datasets:[
     {
       label: "Humidity Data",
