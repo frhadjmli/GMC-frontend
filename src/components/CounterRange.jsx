@@ -89,18 +89,18 @@ const CounterRange = ({min_range,max_range,id}) => {
             <div className='container'>
                 <h3>min value</h3>
                 <div className='Inline'>
-                    <Btn onClick={handleDecreaseMinVal}>-</Btn>
-                    <h4>{minVal}</h4>
                     <Btn onClick={handleIncreaseMinVal}>+</Btn>
+                    <h4>{minVal}</h4>
+                    <Btn onClick={handleDecreaseMinVal}>-</Btn>
                 </div>
             </div>
 
             <div className='container'>
                 <h3>max value</h3>
                 <div className='Inline'>
-                    <Btn onClick={handleDecreaseMaxVal}>-</Btn>
-                    <h4>{maxVal}</h4>
                     <Btn onClick={handleIncreaseMaxVal}>+</Btn>
+                    <h4>{maxVal}</h4>
+                    <Btn onClick={handleDecreaseMaxVal}>-</Btn>
                 </div>
             </div>
 
