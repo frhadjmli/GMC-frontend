@@ -137,7 +137,7 @@ export default function Analytics() {
         </div>
         <div className="content">
           <div className="content">
-              <h3>Latest update of pump time</h3>
+              <h4>Latest update of pump time</h4>
               <br/>
               <h3>{time_pump}</h3>
           </div>
@@ -145,7 +145,7 @@ export default function Analytics() {
       </div>
       <div className="analytic ">
         <div className="content">
-            <h3>Latest update of fan time</h3>
+            <h4>Latest update of fan time</h4>
             <br/>
             <h3>{time_fan}</h3>
         </div>
