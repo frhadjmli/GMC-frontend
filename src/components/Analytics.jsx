@@ -15,6 +15,8 @@ export default function Analytics() {
   const [pump, setPump] = useState([]);
   const [switch_fan , setSwitch_fan] = useState();
   const [switch_pump , setSwitch_pump] = useState();
+  const [time_fan , setTime_fan] = useState();
+  const [time_pump , setTime_pump] = useState();
 
   const {authTokens} = useAuth();
 
@@ -30,6 +32,7 @@ export default function Analytics() {
       const datapoints = await response.json();
       setFan(datapoints);
       setSwitch_fan(datapoints[0].status)
+      setTime_fan(datapoints[0].recorded_time);
       console.log('fan status is =', switch_fan);
       
     } catch (error) {
@@ -48,6 +51,7 @@ export default function Analytics() {
       const datapoints = await response.json();
       setPump(datapoints);
       setSwitch_pump(datapoints[0].status);
+      setTime_pump(datapoints[0].recorded_time);
       console.log('pump status is =', switch_pump);
       
     } catch (error) {
@@ -66,7 +70,7 @@ export default function Analytics() {
     })
     const data = await response.json();
     console.log("data.fan_status", data.status);
-    //setSwitch_fan(data.status);
+    setTime_fan(data.recorded_time);
   }
   let update_pump_status = async () => {
     const response = await fetch("http://127.0.0.1:8000/api/DeviceValueInfo/update/2/",{
@@ -79,7 +83,7 @@ export default function Analytics() {
     })
     const data = await response.json();
     console.log("data.pump_status", data.status);
-    // setSwitch_pump(data.status);
+    setTime_pump(data.recorded_time);
   }
 
   const toggleFanSwitch = () => {
@@ -95,6 +99,7 @@ export default function Analytics() {
     fetchFanData();
     fetchPumpData();
   }, []);
+
 
   const fan_status = fan.filter(y => y.id === 1).map(x => x.status);
   const fan_id = fan.filter(y => y.id === 1).map(x => x.device_Id);
@@ -128,20 +133,24 @@ export default function Analytics() {
     
       <div className="analytic">
         <div className="logo">
-          <BiGroup />
+          <FaWater />
         </div>
         <div className="content">
-          <h5>N/A</h5>
-          <h2>N/A</h2>
+          <div className="content">
+              <h3>Latest update of pump time</h3>
+              <br/>
+              <h3>{time_pump}</h3>
+          </div>
         </div>
       </div>
       <div className="analytic ">
         <div className="content">
-          <h5>N/A</h5>
-          <h2>N/A</h2>
+            <h3>Latest update of fan time</h3>
+            <br/>
+            <h3>{time_fan}</h3>
         </div>
         <div className="logo">
-          <FiActivity />
+          <GiComputerFan />
         </div>
       </div>
       
