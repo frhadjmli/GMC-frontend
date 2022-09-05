@@ -12,10 +12,6 @@ export default function Navbar() {
           Welcome to <span>HGMC DASHBOARD</span>
         </h1>
       </div>
-      <div className="search">
-        <BiSearch />
-        <input type="text" placeholder="Search" />
-      </div>
     </Nav>
   );
 }
