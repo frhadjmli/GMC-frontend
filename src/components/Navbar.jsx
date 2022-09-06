@@ -1,10 +1,24 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 
 export default function Navbar() {
+
+  const [time, setTime] = useState();
+
   let today = new Date().toLocaleDateString('fa-IR-u-nu-latn');
   let todayTime = new Date().toLocaleTimeString();
+
+  useEffect(() =>{
+    const timer = setInterval(() => {
+    setTime(new Date().toLocaleString());
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+}, []);
+
   return (
     <Nav>
       <div className="title">
