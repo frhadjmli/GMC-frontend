@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FaWater } from "react-icons/fa";
 import { GiComputerFan } from "react-icons/gi";
-import { BiGroup } from "react-icons/bi";
-import { FiActivity } from "react-icons/fi";
 import { cardStyles } from "./ReusableStyles";
 import ReactSwitch from "react-switch";
 import useAuth from '../hooks/useAuth';
@@ -137,17 +135,15 @@ export default function Analytics() {
         </div>
         <div className="content">
           <div className="content">
-              <h4>Latest update of pump time</h4>
-              <br/>
-              <h3>{time_pump}</h3>
+              <h5>Last time modification</h5>
+              <h4>{time_pump}</h4>
           </div>
         </div>
       </div>
       <div className="analytic ">
         <div className="content">
-            <h4>Latest update of fan time</h4>
-            <br/>
-            <h3>{time_fan}</h3>
+            <h5>Last time modification</h5>
+            <h4>{time_fan}</h4>
         </div>
         <div className="logo">
           <GiComputerFan />
