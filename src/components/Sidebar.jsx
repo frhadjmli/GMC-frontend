@@ -55,7 +55,7 @@ export default function Sidebar({alarmNotSeen ,seenAlarm}) {
         <div className="top">
           <div className="brand">
             <FaLeaf />
-            <span>HGMC</span>
+            <span>GMC</span>
           </div>
           <div className="toggle">
             {navbarState ? (
