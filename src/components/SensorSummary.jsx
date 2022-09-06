@@ -96,25 +96,28 @@ export default function SensorSummary() {
     fetchSensorData("http://127.0.0.1:8000/api/SensorValueInfo/3/");
     connectToStream();
 }, []);
-
+  
   const transactions = [
     {
       image: avatarImage,
       name: "Temp Sensor",
-      time: `Today, ${temperature.slice(-1).map(x => x.recorded_time)}`,
+      time: `${temperature.slice(-1).map(x => x.date_time)}, 
+             ${temperature.slice(-1).map(x => x.recorded_time)}`,
       amount: parseInt(temperature.slice(-1).map(x => x.value))
       .toString()+String.fromCodePoint(8451),
     },
     {
       image: humdIcon,
       name: "Humd Sensor",
-      time: `Today, ${humidity.slice(-1).map(x => x.recorded_time)}`,
+      time: `${humidity.slice(-1).map(x => x.date_time)},
+             ${humidity.slice(-1).map(x => x.recorded_time)}`,
       amount: parseInt(humidity.slice(-1).map(x => x.value)).toString()+' %'
     },
     {
       image: sunIcon,
       name: "Lux Sensor",
-      time: `Today, ${lux.slice(-1).map(x => x.recorded_time)}`,
+      time: `${lux.slice(-1).map(x => x.date_time)},
+             ${lux.slice(-1).map(x => x.recorded_time)}`,
       amount: parseInt(lux.slice(-1).map(x => x.value)).toString()+' lx',
     },
   ];
@@ -132,8 +135,8 @@ export default function SensorSummary() {
                   <img src={transaction.image} alt="" />
                 </div>
                 <div className="transaction__title__details">
-                  <h3>{transaction.name}</h3>
-                  <h5>{transaction.time}</h5>
+                  <h4>{transaction.name}</h4>
+                  <h6>{transaction.time}</h6>
                 </div>
               </div>
               <div className="transaction__amount">
