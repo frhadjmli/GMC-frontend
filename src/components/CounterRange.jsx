@@ -127,7 +127,7 @@ const Div = styled.div`
     .container{
         .Inline{
             display: inline-block;
-            background-color: coral;
+            background-color: #697A21;
             padding: 0.3rem;
         }
     }
