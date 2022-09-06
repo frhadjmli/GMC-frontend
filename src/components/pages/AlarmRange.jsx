@@ -100,6 +100,7 @@ color: #fff;
       height: 50%;
       gap: 0.25rem;
   
-      } 
+    } 
   }
+}
 `;
